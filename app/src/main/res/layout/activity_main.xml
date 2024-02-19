@@ -10,7 +10,7 @@
         android:id="@+id/IDC_VIEWTEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Arrera Neron Network DEV"
+        android:text="Arrera Neuron Network DEV"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
