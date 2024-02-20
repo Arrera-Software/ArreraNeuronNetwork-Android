@@ -17,17 +17,27 @@ public class MainActivity extends AppCompatActivity {
         // Recuperation des widget
         TextView textSortie = findViewById(R.id.IDC_SORTIE);
         Button btnQUIT = findViewById(R.id.IDC_QUIT);
+        Button btnSend = findViewById(R.id.IDC_BTNSEND);
+        TextView textIN = findViewById(R.id.IDC_SEND);
 
         //Programme de test
         //textSortie.setText(Integer.toString(new CArreraDate().getHour()));
-        textSortie.setText(arreraNetwork.salutation());
+        textSortie.setText("Opale : "+arreraNetwork.booting());
 
         btnQUIT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textSortie.setText(arreraNetwork.aurevoir());
+                textSortie.setText("Opale : "+arreraNetwork.shutdown());
                 //finish();
             }
         });
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textSortie.setText("Opale : "+ arreraNetwork.neuron(textIN.getText().toString()));
+                textIN.setText("");
+            }
+        });
+
     }
 }
