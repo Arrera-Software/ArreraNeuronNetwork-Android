@@ -19,7 +19,7 @@ public class CArreraNeuronNetwork {
     }
 
 
-    public String salutation() {
+    public String booting() {
         Random random = new Random();
         String sortie, formule, cmp;
         List<String> phrase = new ArrayList<>();
@@ -163,7 +163,7 @@ public class CArreraNeuronNetwork {
         return formule + cmp + phrase.get(random.nextInt(2));
     }
 
-    public String aurevoir() {
+    public String shutdown() {
         Random random = new Random();
         String sortie, formule, cmp;
         List<String> phrase = new ArrayList<>();
@@ -307,4 +307,9 @@ public class CArreraNeuronNetwork {
         }
         return formule + cmp+" "+ phrase.get(random.nextInt(2));
     }
+
+    public String neuron(String requette){
+        return requette;
+    }
+
 }
