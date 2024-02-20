@@ -5,25 +5,27 @@ package com.arrera.neuronnetwork;
 public class CArreraNeuronNetwork {
     private CArreraDate date;
     private CGestionnaireNeuron gestionnaireNeuron ;
-    private CNeuronFormulation nFormatation ;
+    private CNeuronFormulation nFormulation;
 
     public CArreraNeuronNetwork(String nameAssistant, String but, Boolean vous, String genre, String user) {
         this.gestionnaireNeuron = new CGestionnaireNeuron(nameAssistant,but,vous,genre,user);
         this.date = new CArreraDate();
-        this.nFormatation = new CNeuronFormulation(this.gestionnaireNeuron,this.date);
+        this.nFormulation = new CNeuronFormulation(this.gestionnaireNeuron,this.date);
 
     }
 
     public String booting()
     {
-        return this.nFormatation.salutation();
+        return this.nFormulation.salutation();
     }
     public String shutdown(){
-        return this.nFormatation.aurevoir();
+        return this.nFormulation.aurevoir();
     }
 
     public String neuron(String requette){
-        return requette;
+        String sortie;
+        sortie = this.nFormulation.nocomprehension();
+        return sortie;
     }
 
 }
