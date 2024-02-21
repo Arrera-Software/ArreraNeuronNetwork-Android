@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textSortie.setText("Opale : "+ arreraNetwork.neuron(textIN.getText().toString()));
+                int valeur ;
+                arreraNetwork.neuron(textIN.getText().toString());
+                valeur = arreraNetwork.getValeur();
+                textSortie.setText("Opale : "+arreraNetwork.getSortie() );
                 textIN.setText("");
             }
         });

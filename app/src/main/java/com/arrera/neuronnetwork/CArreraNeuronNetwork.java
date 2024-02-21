@@ -6,6 +6,7 @@ public class CArreraNeuronNetwork {
 
     private String oldRequette , oldSortie;
     private CArreraDate date;
+    private int valeurSortieNeuron ;
     private CGestionnaireNeuron gestionnaireNeuron ;
     private CNeuronFormulation nFormulation;
 
@@ -30,12 +31,35 @@ public class CArreraNeuronNetwork {
         return text ;
     }
 
-    public String neuron(String requette){
+    private int verifSortie(String sortie)
+    {
+        if (sortie.length()==0)
+        {
+            return 0 ;
+        }
+        else
+        {
+            return 1 ;
+        }
+    }
+    public void neuron(String requette){
         String sortie;
+        int nbSortie ;
         sortie = this.nFormulation.nocomprehension();
         this.oldRequette = requette;
         this.oldSortie =  sortie;
-        return sortie;
+        this.valeurSortieNeuron = 0 ;
     }
+
+    public String getSortie (){
+        return  this.oldSortie ;
+    }
+
+    public int getValeur(){
+        return this.valeurSortieNeuron ;
+    }
+
+
+
 
 }
