@@ -22,8 +22,8 @@
 
     <EditText
         android:id="@+id/IDC_SEND"
-        android:layout_width="349dp"
-        android:layout_height="40dp"
+        android:layout_width="344dp"
+        android:layout_height="74dp"
         android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="text"
