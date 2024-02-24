@@ -45,10 +45,11 @@ public class CArreraNeuronNetwork {
         }
     }
     public void neuron(String requette){
-        String sortie;
+        String sortie ,requetteFormate;
+        this.oldRequette = requette;
+        requetteFormate = this.fNeuron.formateText(requette);
         int nbSortie = 0 ;
         sortie = this.nFormulation.nocomprehension();
-        this.oldRequette = requette;
         this.oldSortie = sortie ;
         this.valeurSortieNeuron = nbSortie;
     }

@@ -7,5 +7,9 @@ public class fncArreraNeuron {
         this.gestionnaite = gestionnaite ;
     }
 
+    public String formateText (String var)
+    {
+        return var.toLowerCase().replace("é","e").replace("è","e");
+    }
 
 }
