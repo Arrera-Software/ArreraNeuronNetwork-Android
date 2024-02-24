@@ -35,16 +35,16 @@
 
     <Button
         android:id="@+id/IDC_BTNSEND"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="308dp"
+        android:layout_height="41dp"
         android:backgroundTint="#214EF3"
         android:text="ENVOYER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDC_SEND"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.153" />
 
     <TextView
         android:id="@+id/IDC_SORTIE"
@@ -57,15 +57,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IDC_BTNSEND" />
 
-    <Button
-        android:id="@+id/IDC_QUIT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
-        android:backgroundTint="#214EF3"
-        android:text="Quitter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.638"
-        app:layout_constraintStart_toEndOf="@+id/IDC_BTNSEND"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
