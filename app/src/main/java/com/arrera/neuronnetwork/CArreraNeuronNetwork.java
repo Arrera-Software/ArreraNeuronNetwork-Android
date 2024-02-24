@@ -11,12 +11,17 @@ public class CArreraNeuronNetwork {
     private CNeuronFormulation nFormulation;
     private  fncArreraNeuron fNeuron;
 
+    private CNeuronService nService ;
+
 
     public CArreraNeuronNetwork(String nameAssistant, String but, Boolean vous, String genre, String user) {
         this.gestionnaireNeuron = new CGestionnaireNeuron(nameAssistant,but,vous,genre,user);
         this.fNeuron = new fncArreraNeuron(this.gestionnaireNeuron);
         this.date = new CArreraDate();
         this.nFormulation = new CNeuronFormulation(this.gestionnaireNeuron,this.date);
+
+        //Neuron
+        this.nService = new CNeuronService(this.gestionnaireNeuron,this.date);
     }
 
     public String booting()
@@ -45,12 +50,20 @@ public class CArreraNeuronNetwork {
         }
     }
     public void neuron(String requette){
-        String sortie ,requetteFormate;
+        String texte ,requetteFormate;
         this.oldRequette = requette;
         requetteFormate = this.fNeuron.formateText(requette);
         int nbSortie = 0 ;
-        sortie = this.nFormulation.nocomprehension();
-        this.oldSortie = sortie ;
+        nService.neuron(requetteFormate);
+        nbSortie = nService.getValeurSortie() ;
+        if (nbSortie==0) {
+            texte = this.nFormulation.nocomprehension();
+        }
+        else
+        {
+            texte = this.nService.getText();
+        }
+        this.oldSortie = texte ;
         this.valeurSortieNeuron = nbSortie;
     }
 

@@ -63,7 +63,7 @@ public class CArreraDate {
     public String getDate()
     {
         long timestamp =  this.date.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM yyyy");
         String formattedMonth = sdf.format(new Date(timestamp));
         return  formattedMonth ;
     }
