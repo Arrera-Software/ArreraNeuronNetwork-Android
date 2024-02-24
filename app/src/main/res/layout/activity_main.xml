@@ -22,8 +22,8 @@
 
     <EditText
         android:id="@+id/IDC_SEND"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="349dp"
+        android:layout_height="40dp"
         android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="text"
@@ -37,6 +37,7 @@
         android:id="@+id/IDC_BTNSEND"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#214EF3"
         android:text="ENVOYER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,10 +61,11 @@
         android:id="@+id/IDC_QUIT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="276dp"
+        android:layout_marginTop="256dp"
+        android:backgroundTint="#214EF3"
         android:text="Quitter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintHorizontal_bias="0.638"
         app:layout_constraintStart_toEndOf="@+id/IDC_BTNSEND"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
