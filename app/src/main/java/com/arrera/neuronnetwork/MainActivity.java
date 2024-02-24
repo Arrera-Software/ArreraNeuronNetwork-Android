@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 valeur = arreraNetwork.getValeur();
                 textSortie.setText("Opale : "+arreraNetwork.getSortie() );
                 textIN.setText("");
+
             }
         });
 
