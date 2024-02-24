@@ -156,7 +156,7 @@ public class CNeuronFormulation {
 
             }
         }
-        return formule + cmp + phrase.get(random.nextInt(2));
+        return formule+" "+cmp+". "+phrase.get(random.nextInt(2));
     }
 
     public String aurevoir() {
@@ -301,7 +301,7 @@ public class CNeuronFormulation {
                 }
             }
         }
-        return formule + cmp+" "+ phrase.get(random.nextInt(2));
+        return formule+" "+cmp+" "+ phrase.get(random.nextInt(2));
     }
 
     public String nocomprehension() {
