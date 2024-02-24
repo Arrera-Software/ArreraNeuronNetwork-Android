@@ -9,7 +9,7 @@ public class fncArreraNeuron {
 
     public String formateText (String var)
     {
-        return var.toLowerCase().replace("é","e").replace("è","e");
+        return var.toLowerCase().replace("é","e").replace("è","e").replace("à","a");
     }
 
 }
