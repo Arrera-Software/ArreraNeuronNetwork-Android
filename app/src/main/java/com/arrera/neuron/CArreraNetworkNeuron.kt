@@ -7,9 +7,31 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private val aDate : CArreraDate = CArreraDate()
     private val gestionnaite : CGestionnaireNeuron = CGestionnaireNeuron(this.nameAssistant,this.but,this.vous,this.genre,this.user)
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
-    fun neuron()
+    private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation);
+    private var sortieText : String = "" ;
+    private var sortieNb : Int = 0 ;
+    fun neuron(requette :String)
     {
+        nChat.neuron(requette);
+        sortieNb = nChat.outNeuronNb();
+        if (sortieNb == 0 )
+        {
+            sortieText = nFormulation.nocomprehension();
+        }
+        else
+        {
+            sortieText = nChat.outNeuronText()
+        }
+    }
 
+    fun outNeuronText() :String
+    {
+        return sortieText
+    }
+
+    fun outNeuronNb () :Int
+    {
+        return sortieNb
     }
 
     fun bonjour():String

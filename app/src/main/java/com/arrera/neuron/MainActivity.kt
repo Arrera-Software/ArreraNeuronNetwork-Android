@@ -15,12 +15,14 @@ class MainActivity : AppCompatActivity() {
         val msgIN = findViewById<TextView>(R.id.IDC_INMSG);
         val btnSend = findViewById<Button>(R.id.IDC_SEND);
         // declaration du neuron
-        val arreraNeuron = CArreraNetworkNeuron("Opale","but",true,"Monsieur","dev");
+        val arreraNeuron = CArreraNetworkNeuron("Opale", "but", true, "Monsieur", "dev");
         // demarage
-        msgOUT.setText(arreraNeuron.bonjour());
-        btnSend.setOnClickListener(){
+        msgOUT.setText("Opale : "+arreraNeuron.bonjour());
+        btnSend.setOnClickListener() {
             val text = msgIN.text.toString();
             msgIN.setText("");
+            arreraNeuron.neuron(text)
+            msgOUT.setText("Opale : "+arreraNeuron.outNeuronText());
         }
     }
 }
