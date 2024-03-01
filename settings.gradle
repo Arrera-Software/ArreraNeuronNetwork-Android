@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Arrera Neuron Network Android"
-include(":app")
+rootProject.name = "ArreraNeuronNetwork-Android"
+include ':app'
