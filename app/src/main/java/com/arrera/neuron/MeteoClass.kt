@@ -24,7 +24,7 @@ class MeteoClass {
 
 
     fun data(callback: MeteoCallback) {
-        val result = interfaceMeteo.getData()
+        val result = interfaceMeteo.getData("48.8534","2.3488")
         result.enqueue(object :Callback<JsonObject>{
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if( response.isSuccessful) {
