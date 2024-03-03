@@ -42,7 +42,6 @@ class MeteoClass {
 
                 }
             }
-
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 callback.onError("Erreur de réseau")
             }
