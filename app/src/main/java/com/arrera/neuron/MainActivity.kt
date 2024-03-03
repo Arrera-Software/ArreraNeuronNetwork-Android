@@ -21,8 +21,12 @@ class MainActivity : AppCompatActivity() {
         btnSend.setOnClickListener() {
             val text = msgIN.text.toString();
             msgIN.setText("");
-            arreraNeuron.neuron(text)
-            msgOUT.setText("Opale : "+arreraNeuron.outNeuronText());
+            arreraNeuron.neuron(text) { response ->
+                runOnUiThread {
+                    msgOUT.setText("Opale : $response")
+                }
+            }
+
         }
     }
 }

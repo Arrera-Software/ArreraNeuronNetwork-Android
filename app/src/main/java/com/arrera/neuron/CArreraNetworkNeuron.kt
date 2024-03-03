@@ -1,5 +1,9 @@
 package com.arrera.neuron
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:String, private val  vous:Boolean, private val genre:String, private val user:String) {
@@ -8,19 +12,37 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private val gestionnaite : CGestionnaireNeuron = CGestionnaireNeuron(this.nameAssistant,this.but,this.vous,this.genre,this.user)
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
     private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation);
+    private val fMeteo: MeteoClass = MeteoClass();
     private var sortieText : String = "" ;
     private var sortieNb : Int = 0 ;
-    fun neuron(requette :String)
+
+    fun neuron(requette :String ,callback: (String) -> Unit)
     {
         nChat.neuron(requette);
         sortieNb = nChat.outNeuronNb();
         if (sortieNb == 0 )
         {
-            sortieText = nFormulation.nocomprehension();
+            if (requette=="meteo")
+            {
+                fMeteo.data(object : MeteoCallback {
+                    override fun onTemperatureReceived(temperature: String) {
+                        callback("La température est de $temperature°C")
+                    }
+
+                    override fun onError(error: String) {
+                        callback(error)
+                    }
+                })
+                sortieNb = 1
+            }
+            else
+            {
+                callback(nFormulation.nocomprehension());
+            }
         }
         else
         {
-            sortieText = nChat.outNeuronText()
+            callback(nChat.outNeuronText())
         }
     }
 
