@@ -25,8 +25,8 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
             if (requette=="meteo")
             {
                 fMeteo.data(object : MeteoCallback {
-                    override fun onTemperatureReceived(temperature: String) {
-                        callback("La température est de $temperature°C")
+                    override fun onTemperatureReceived(temperature: String,ville :String,description:String) {
+                        callback("La meteo a$ville est$description avec une $temperature  ")
                     }
 
                     override fun onError(error: String) {

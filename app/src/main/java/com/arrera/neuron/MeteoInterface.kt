@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.Call
 
 interface MeteoInterface {
-    @GET("?q=Paris&appid=19bfbee6112be5b3d9a64d4ccec72602&units=metric")
+    @GET("?q=Paris&appid=19bfbee6112be5b3d9a64d4ccec72602&units=metric&lang=fr")
     fun getData(): Call<JsonObject>
 }

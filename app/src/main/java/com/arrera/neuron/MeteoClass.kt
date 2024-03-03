@@ -21,8 +21,6 @@ class MeteoClass {
         .build()
     private val interfaceMeteo = retrofit.create(MeteoInterface::class.java)
     private var requetteOK = false
-    private  var temp = ""
-
 
 
     fun data(callback: MeteoCallback) {
@@ -30,10 +28,13 @@ class MeteoClass {
         result.enqueue(object :Callback<JsonObject>{
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if( response.isSuccessful) {
-                    val resultMeteo = response.body();
+                    val resultMeteo = response.body()
                     val main = resultMeteo?.get("main")?.asJsonObject
-                    temp = main?.get("temp")?.asDouble.toString()
-                    callback.onTemperatureReceived(temp)
+                    val weather = resultMeteo?.get("weather")?.asJsonArray?.get(0)?.asJsonObject
+                    val temp = main?.get("temp")?.asDouble.toString()
+                    val ville = resultMeteo?.get("name").toString().replace('"',' ')
+                    val description = weather?.get("description").toString().replace('"',' ')
+                    callback.onTemperatureReceived(temp,ville,description)
                 }
                 else
                 {
@@ -49,15 +50,4 @@ class MeteoClass {
 
     }
 
-    fun returnTEMP() : String
-    {
-        if (requetteOK == false)
-        {
-            return "erreur"
-        }
-        else
-        {
-            return temp
-        }
-    }
 }
