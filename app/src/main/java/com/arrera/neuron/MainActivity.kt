@@ -12,10 +12,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() , LocationListener  {
 
+    private var latitude = ""
+    private var longitude = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val locationManager : LocationManager
@@ -28,22 +29,12 @@ class MainActivity : AppCompatActivity() , LocationListener  {
         val arreraNeuron = CArreraNetworkNeuron("Opale", "but", true, "Monsieur", "dev");
         // demarage
         msgOUT.setText("Opale : "+arreraNeuron.bonjour());
-        // Localisation
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED
-            ){
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
-        }
-        try {
-            val locationManager = applicationContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this@MainActivity)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
 
         btnSend.setOnClickListener() {
             val text = msgIN.text.toString();
+            getLocation()
             msgIN.setText("");
-            arreraNeuron.neuron(text) { response ->
+            arreraNeuron.neuron(text,latitude,longitude) { response ->
                 runOnUiThread {
                     msgOUT.setText("Opale : $response")
                 }
@@ -52,8 +43,22 @@ class MainActivity : AppCompatActivity() , LocationListener  {
         }
     }
 
-    override fun onLocationChanged(location: Location) {
+    private fun getLocation() {
+        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100)
+        } else {
+            val lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            lastKnownLocation?.let {
+                latitude = it.latitude.toString()
+                longitude = it.longitude.toString()
+
+            }
+        }
     }
 
-
+    override fun onLocationChanged(location: Location) {
+        longitude = location.longitude.toString()
+        latitude = location.latitude.toString()
+    }
 }

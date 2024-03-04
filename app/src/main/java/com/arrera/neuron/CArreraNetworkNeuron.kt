@@ -16,7 +16,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private var sortieText : String = "" ;
     private var sortieNb : Int = 0 ;
 
-    fun neuron(requette :String ,callback: (String) -> Unit)
+    fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)
     {
         nChat.neuron(requette);
         sortieNb = nChat.outNeuronNb();
@@ -24,9 +24,9 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
         {
             if (requette=="meteo")
             {
-                fMeteo.data(object : MeteoCallback {
+                fMeteo.data(latitude,longitude,object : MeteoCallback {
                     override fun onTemperatureReceived(temperature: String,ville :String,description:String) {
-                        callback("La meteo a$ville est$description avec une $temperature °C.")
+                        callback("La meteo a$ville est$description avec une temperature de $temperature °C.")
                     }
 
                     override fun onError(error: String) {

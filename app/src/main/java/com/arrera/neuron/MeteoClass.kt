@@ -23,8 +23,8 @@ class MeteoClass {
     private var requetteOK = false
 
 
-    fun data(callback: MeteoCallback) {
-        val result = interfaceMeteo.getData("48.8534","2.3488")
+    fun data(latitude:String,longitude:String,callback: MeteoCallback) {
+        val result = interfaceMeteo.getData(latitude,longitude)
         result.enqueue(object :Callback<JsonObject>{
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 if( response.isSuccessful) {
