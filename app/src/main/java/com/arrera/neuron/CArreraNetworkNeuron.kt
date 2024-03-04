@@ -21,7 +21,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
             if (requetteFormater.contains("meteo"))
             {
                 fMeteo.data(latitude,longitude,object : fMeteoSortie {
-                    override fun onTemperatureReceived(temperature: String,ville :String,description:String) {
+                    override fun onDataReceived(temperature: String, ville :String, description:String) {
                         val random = Random.nextInt(1,2)
                         if (random==1) {
                             callback("La meteo a$ville" + "est$description" + "avec une temperature de $temperature °C.")

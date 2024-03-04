@@ -29,7 +29,7 @@ class CfArreraMeteo {
                     val temp = main?.get("temp")?.asDouble.toString()
                     val ville = resultMeteo?.get("name").toString().replace('"',' ')
                     val description = weather?.get("description").toString().replace('"',' ')
-                    callback.onTemperatureReceived(temp,ville,description)
+                    callback.onDataReceived(temp,ville,description)
                 }
                 else
                 {
