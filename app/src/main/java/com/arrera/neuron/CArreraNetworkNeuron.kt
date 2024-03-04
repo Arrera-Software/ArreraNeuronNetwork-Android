@@ -1,5 +1,7 @@
 package com.arrera.neuron
 
+import kotlin.random.Random
+
 class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:String, private val  vous:Boolean, private val genre:String, private val user:String) {
 
     private val aDate : CArreraDate = CArreraDate()
@@ -7,27 +9,39 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
     private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation);
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();
-    private var sortieText : String = "" ;
-    private var sortieNb : Int = 0 ;
 
     fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)
     {
+        var sortieNb = 0
         nChat.neuron(requette);
         sortieNb = nChat.outNeuronNb();
         if (sortieNb == 0 )
         {
-            if (requette=="meteo")
+            if (requette.contains("meteo"))
             {
                 fMeteo.data(latitude,longitude,object : fMeteoSortie {
                     override fun onTemperatureReceived(temperature: String,ville :String,description:String) {
-                        callback("La meteo a$ville"+"est$description"+"avec une temperature de $temperature °C.")
+                        val random = Random.nextInt(1,2)
+                        if (random==1) {
+                            callback("La meteo a$ville" + "est$description" + "avec une temperature de $temperature °C.")
+                        }
+                        else
+                        {
+                            if (gestionnaite.etatVous==true)
+                            {
+                                callback("La meteo a votre localisation est$description" + "avec une temperature de $temperature °C.")
+                            }
+                            else
+                            {
+                                callback("La meteo a ta localisation est$description" + "avec une temperature de $temperature °C.")
+                            }
+                        }
                     }
 
                     override fun onError(error: String) {
                         callback(error)
                     }
                 })
-                sortieNb = 1
             }
             else
             {
@@ -38,16 +52,6 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
         {
             callback(nChat.outNeuronText())
         }
-    }
-
-    fun outNeuronText() :String
-    {
-        return sortieText
-    }
-
-    fun outNeuronNb () :Int
-    {
-        return sortieNb
     }
 
     fun bonjour():String
