@@ -70,9 +70,9 @@ class MainActivity : AppCompatActivity() , LocationListener  {
     }
 
     override fun onLocationChanged(location: Location) {
-        Toast.makeText(this, "${location.latitude},${location.longitude}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "${location.latitude},${location.longitude}", Toast.LENGTH_SHORT).show()
         try {
-          latitude = location.latitude.toString()
+            latitude = location.latitude.toString()
             longitude=location.longitude.toString()
 
         } catch (e: Exception) {
