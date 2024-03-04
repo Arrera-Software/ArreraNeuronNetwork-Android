@@ -1,29 +1,24 @@
 package com.arrera.neuron
 
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class MeteoClass {
+class CfArreraMeteo {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.openweathermap.org/data/2.5/weather/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-    private val interfaceMeteo = retrofit.create(MeteoInterface::class.java)
+    private val interfaceMeteo = retrofit.create(fMeteoInterface::class.java)
     private var requetteOK = false
 
 
-    fun data(latitude:String,longitude:String,callback: MeteoCallback) {
+    fun data(latitude:String,longitude:String,callback: fMeteoSortie) {
         val result = interfaceMeteo.getData(latitude,longitude)
         result.enqueue(object :Callback<JsonObject>{
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
