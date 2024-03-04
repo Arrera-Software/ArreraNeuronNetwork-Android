@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
@@ -25,6 +26,17 @@ class MainActivity : AppCompatActivity() , LocationListener  {
         val msgOUT = findViewById<TextView>(R.id.IDC_OUTNEURON);
         val msgIN = findViewById<TextView>(R.id.IDC_INMSG);
         val btnSend = findViewById<Button>(R.id.IDC_SEND);
+        // Localisation
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED
+        ){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
+        }
+        try {
+            val locationManager = applicationContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this@MainActivity)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         // declaration du neuron
         val arreraNeuron = CArreraNetworkNeuron("Opale", "but", true, "Monsieur", "dev");
         // demarage
@@ -58,7 +70,13 @@ class MainActivity : AppCompatActivity() , LocationListener  {
     }
 
     override fun onLocationChanged(location: Location) {
-        longitude = location.longitude.toString()
-        latitude = location.latitude.toString()
+        Toast.makeText(this, "${location.latitude},${location.longitude}", Toast.LENGTH_SHORT).show()
+        try {
+          latitude = location.latitude.toString()
+            longitude=location.longitude.toString()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
