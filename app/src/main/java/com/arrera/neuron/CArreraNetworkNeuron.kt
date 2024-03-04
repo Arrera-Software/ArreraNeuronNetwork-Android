@@ -9,7 +9,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
     private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation);
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();
-
+    private val fActu : CfArreraActu = CfArreraActu()
     fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)
     {
         var sortieNb = 0
@@ -46,7 +46,22 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
             }
             else
             {
-                callback(nFormulation.nocomprehension());
+                if(requetteFormater.contains("actu"))
+                {
+                    fActu.data(object :fActuSortie{
+                        override fun onDataReceived(titre1: String,titre2: String,titre3: String) {
+                            callback("Les actualités sont $titre1,$titre2 et $titre3")
+                    }
+
+                        override fun onError(error: String) {
+                            callback(error)
+                        }
+                    })
+                }
+                else
+                {
+                    callback(nFormulation.nocomprehension());
+                }
             }
         }
         else
