@@ -13,11 +13,12 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)
     {
         var sortieNb = 0
-        nChat.neuron(requette);
+        var requetteFormater = nFormulation.formatageText(requette)
+        nChat.neuron(requetteFormater);
         sortieNb = nChat.outNeuronNb();
         if (sortieNb == 0 )
         {
-            if (requette.contains("meteo"))
+            if (requetteFormater.contains("meteo"))
             {
                 fMeteo.data(latitude,longitude,object : fMeteoSortie {
                     override fun onTemperatureReceived(temperature: String,ville :String,description:String) {

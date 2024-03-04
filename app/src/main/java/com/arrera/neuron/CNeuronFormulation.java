@@ -8,6 +8,7 @@ public class CNeuronFormulation {
     private String nameAssistant, genre, user;
     private boolean vous;
     private CArreraDate date;
+
     public CNeuronFormulation(CGestionnaireNeuron gestion,CArreraDate date ){
         this.nameAssistant = gestion.getNameAssistant();
         this.genre = gestion.getGenre();
@@ -313,5 +314,17 @@ public class CNeuronFormulation {
             text = "Je ne comprend pas ce que tu m'as dit ou ce que tu demande.";
         }
         return text;
+    }
+
+    public String formatageText(String requette)
+    {
+        String sortie = requette.replace("é","e")
+                .replace("è","e")
+                .replace("à","a")
+                .replace("ç","c")
+                .replace("â","a")
+                .replace("ê","e")
+                .toLowerCase();
+        return sortie;
     }
 }
