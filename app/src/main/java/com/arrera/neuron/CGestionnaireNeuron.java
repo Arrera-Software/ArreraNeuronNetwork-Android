@@ -7,6 +7,7 @@ public class CGestionnaireNeuron {
     private String oldSortie = "";
 
     private String oldRequette = "";
+    private int nbDiscution ;
 
     public CGestionnaireNeuron(String nameAssistant, String but, Boolean vous, String genre, String user,String createur,CArreraGestionText gText) {
         this.nameAssistant = nameAssistant;
@@ -15,6 +16,7 @@ public class CGestionnaireNeuron {
         this.user = user;
         this.genre = genre;
         this.createur = createur;
+        this.nbDiscution = 0;
         this.gText = gText;
     }
 
@@ -39,6 +41,10 @@ public class CGestionnaireNeuron {
     }
 
     public String getCreateur(){return this.createur;}
+
+    public int getNbDiscution(){return this.nbDiscution;}
+
+    public void addDiscution(){nbDiscution=nbDiscution+1;}
 
     public boolean setOldSortie(String sortie)
     {
