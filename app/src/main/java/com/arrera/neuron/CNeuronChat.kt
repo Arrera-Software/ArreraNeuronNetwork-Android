@@ -4,6 +4,7 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
 {
     private var sortieText : String = "" ;
     private var sortieNb : Int = 0 ;
+    private var oldSortie = gestionnaire.oldSortie ;
     fun neuron(requette :String)
     {
         if (requette.contains("bonjour")||requette.contains("salut")||requette.contains("coucou")||requette.contains("bonsoir"))

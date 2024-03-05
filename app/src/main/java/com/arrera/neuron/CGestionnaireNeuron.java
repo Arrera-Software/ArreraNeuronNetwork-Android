@@ -2,15 +2,17 @@ package com.arrera.neuron;
 
 public class CGestionnaireNeuron {
     private String nameAssistant, but, genre, user;
+    private CArreraGestionText gText ;
     private boolean vous;
+    private String oldSortie = "";
 
-    public CGestionnaireNeuron(String nameAssistant, String but, Boolean vous, String genre, String user) {
+    public CGestionnaireNeuron(String nameAssistant, String but, Boolean vous, String genre, String user,CArreraGestionText gText) {
         this.nameAssistant = nameAssistant;
         this.but = but;
         this.vous = vous;
-
         this.user = user;
         this.genre = genre;
+        this.gText = gText;
     }
 
     public String getNameAssistant() {
@@ -31,6 +33,24 @@ public class CGestionnaireNeuron {
     public boolean getEtatVous()
     {
         return  this.vous;
+    }
+
+    public boolean setOldSortie(String sortie)
+    {
+        if (sortie.isEmpty())
+        {
+            return  false ;
+        }
+        else
+        {
+            this.oldSortie = gText.formatageText(sortie);
+            return  true ;
+        }
+    }
+
+    public String getOldSortie()
+    {
+        return this.oldSortie;
     }
 
 }
