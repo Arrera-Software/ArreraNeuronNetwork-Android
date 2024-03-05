@@ -221,14 +221,34 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                     debutPhrase = "Je suis " + name + " crée par " + createur + ". Qui a pour bute " + bute + ". Et qui utilise un algorythme d'assistant personnelle developper par Arrera Software."
                                                 }
                                             }
-
                                             sortieText = debutPhrase + finPhrase
                                             this.sortieNb = 1;
+
                                         }
                                         else
                                         {
-                                            this.sortieNb = 0;
-                                            this.sortieText = "";
+                                            if (requette.contains("toujours la") || requette.contains("es tu la" )
+                                                || requette.contains(name.lowercase()) || requette.contains("tu es la")
+                                                || requette.contains("vous étes la") || requette.contains("vous etes la"))
+                                                {
+                                                    var nbRand = Random.nextInt(0, 2)
+                                                    var listReponse = listOf("Je ne peut pas partir de tout façon .",
+                                                            "Je ne pas partir tant que je peux servir .",
+                                                            "A moin de m'arréter qui serait un acte horible je suis toujour la .")
+                                                    if (etatVous )
+                                                    {
+                                                        this.sortieText = "Oui, je suis toujours la " + genre + " " + user + "." + listReponse[nbRand]
+                                                    }
+                                                    else
+                                                    {
+                                                        this.sortieText = "Oui, je suis toujours la " + user + listReponse[nbRand]
+                                                    }
+                                                    this.sortieNb = 1;
+                                                }
+                                                else {
+                                                this.sortieNb = 0;
+                                                this.sortieText = "";
+                                            }
                                         }
                                     }
                                 }
