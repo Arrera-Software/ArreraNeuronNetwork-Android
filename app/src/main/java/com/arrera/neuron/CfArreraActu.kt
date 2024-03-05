@@ -24,9 +24,8 @@ class CfArreraActu {
                     var article = sortieActu?.get("articles")?.asJsonArray
                     var titre1 = article?.get(0)?.asJsonObject?.get("title").toString().replace('"',' ').replace("/","")
                     var titre2 = article?.get(1)?.asJsonObject?.get("title").toString().replace('"',' ').replace("/","")
-                    var titre3 = article?.get(2)?.asJsonObject?.get("title").toString().replace('"',' ').replace("/","")
 
-                    callback.onDataReceived(titre1,titre2,titre3)
+                    callback.onDataReceived(titre1,titre2)
                 }
                 else
                 {
