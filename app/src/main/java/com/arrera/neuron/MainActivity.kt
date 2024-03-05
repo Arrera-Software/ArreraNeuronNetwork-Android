@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() , LocationListener  {
         // declaration du neuron
         val arreraNeuron = CArreraNetworkNeuron(
             "Opale",
-            "but",
+            "developper un algorythme d'assistant pour telephone Android",
             true,
             "Monsieur",
             "dev",
