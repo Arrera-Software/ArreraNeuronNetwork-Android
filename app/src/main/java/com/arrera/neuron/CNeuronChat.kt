@@ -39,6 +39,10 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
         var genre = gestionnaire.genre
         var user = gestionnaire.user
         var etatVous = gestionnaire.etatVous
+        var bute = gestionnaire.but
+        var name = gestionnaire.nameAssistant
+        var createur = gestionnaire.createur
+        var nbDiscution = gestionnaire.nbDiscution
         if (requette.contains("bonjour")||requette.contains("salut")||requette.contains("coucou")||requette.contains("bonsoir"))
         {
             this.sortieNb = 1 ;
@@ -159,8 +163,75 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                             }
                             else
                             {
-                                this.sortieNb = 0;
-                                this.sortieText = "";
+                                if (requette.contains("comment ca va ") || requette.contains( "ca va") ||
+                                    requette.contains( "ca va" ) || requette.contains( "comment vas tu" ) ||
+                                    requette.contains("comment allez vous" ) || requette.contains( "tu vas bien" ) ||
+                                    requette.contains( "vous allez bien" ) || requette.contains( "est ce que tout va bien") ||
+                                    requette.contains("tout va bien pour toi") || requette.contains("tout va bien pour vous"))
+                                {
+                                    var nbRand = Random.nextInt(0, 1)
+                                    var listReponse = listOf("Je suis un programme informatique je resent pas de sentiment.",
+                                            "Je ne peut pas resentir de sentiment, je suis qu'un programmme informatique.")
+                                    sortieText = listReponse[nbRand]
+                                    sortieNb = 1
+                                }
+                                else
+                                {
+                                    if (requette.contains("tu peux me parler de toi") || requette.contains("tu peux te presenter") || requette.contains("presente toi")) {
+                                        if (oldRequette.contains("tu es qui") ||oldRequette.contains("présente toi") || oldRequette.contains("présentation") ||
+                                            oldRequette.contains("qui es tu") ||oldRequette.contains("qui es tu")) {
+
+                                            if(etatVous) {
+                                                sortieText = "Je vous l'ai deja dit " + genre + " je peux pas trop vous dire plus je n'est pas de passion ni de hobbie je ne suis qu'un programme informatique qui a pour bute " + bute + "."
+                                            }
+                                            else {
+                                                sortieText = "Je te l'ai deja dit " + user + " je peux pas trop t'en dire plus je n'est pas de passion ni de hobbie je ne suis qu'un programme informatique qui a pour bute " + bute + "."
+                                            }
+                                            sortieNb= 1
+                                        }
+                                        else
+                                        {
+                                            sortieText = "Je suis un assistant personnelle nommer " + name + " qui a été crée par " + createur + ". Je n'ai pas pas de passion ni de hobbie du a ma conditions de programme informatique."
+                                            sortieNb= 1
+                                        }
+                                    }
+                                    else {
+                                        if ( requette.contains("tu es qui") || requette.contains("présente toi")
+                                            || requette.contains("présentation") || requette.contains("qui es tu")
+                                            || requette.contains("qui es tu"))
+                                        {
+                                            var finPhrase :String
+                                            var debutPhrase:String
+                                            if (nbDiscution >= 5)
+                                            {
+                                                finPhrase = "Vous me parler depuis un moment sans savoir qui je suis ?"
+                                            }
+                                            else
+                                                {
+                                                    finPhrase = ""
+                                                }
+                                            if (name == "SIX") {
+                                                debutPhrase = "Je suis Six , l'assistant personnelle Vocal de " + genre + " " + user + " " + ". Crée par Baptiste Pauchet pour simplifier et automatiser l'uttilisation de son ordinateur et pour le divertire."
+                                            }
+                                            else {
+                                                if (name == "Ryley") {
+                                                    debutPhrase = "Je suis Ryley un assistant textuel crée a l'origine par Baptiste Pauchet et Wiruto2 .Pour les assister dans leurs etude et par la suite les aider dans le developement informatique."
+                                                }
+                                                else {
+                                                    debutPhrase = "Je suis " + name + " crée par " + createur + ". Qui a pour bute " + bute + ". Et qui utilise un algorythme d'assistant personnelle developper par Arrera Software."
+                                                }
+                                            }
+
+                                            sortieText = debutPhrase + finPhrase
+                                            this.sortieNb = 1;
+                                        }
+                                        else
+                                        {
+                                            this.sortieNb = 0;
+                                            this.sortieText = "";
+                                        }
+                                    }
+                                }
                             }
 
                         }
