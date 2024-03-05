@@ -2,11 +2,11 @@ package com.arrera.neuron
 
 import kotlin.random.Random
 
-class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:String, private val  vous:Boolean, private val genre:String, private val user:String) {
+class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:String, private val  vous:Boolean, private val genre:String, private val user:String,private val createur:String) {
 
     private val aDate : CArreraDate = CArreraDate()
     private val gText : CArreraGestionText = CArreraGestionText()
-    private val gestionnaite : CGestionnaireNeuron = CGestionnaireNeuron(this.nameAssistant,this.but,this.vous,this.genre,this.user,gText)
+    private val gestionnaite : CGestionnaireNeuron = CGestionnaireNeuron(this.nameAssistant,this.but,this.vous,this.genre,this.user,this.createur,gText)
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
     private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation);
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();

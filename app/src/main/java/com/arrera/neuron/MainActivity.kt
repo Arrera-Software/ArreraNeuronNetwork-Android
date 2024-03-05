@@ -38,7 +38,13 @@ class MainActivity : AppCompatActivity() , LocationListener  {
             e.printStackTrace()
         }
         // declaration du neuron
-        val arreraNeuron = CArreraNetworkNeuron("Opale", "but", true, "Monsieur", "dev");
+        val arreraNeuron = CArreraNetworkNeuron(
+            "Opale",
+            "but",
+            true,
+            "Monsieur",
+            "dev",
+            "Baptiste Pauchet");
         // demarage
         msgOUT.setText("Opale : "+arreraNeuron.bonjour());
 
