@@ -47,7 +47,7 @@ public class CNeuronFormulation {
                     phrase.add("Comment peux-tu travailler si tard ?");
                 }
             } else {
-                if ((hour >= 6) && (hour <= 10)) {
+                if ((hour >= 6) && (hour < 10)) {
                     if (this.vous == true) {
                         formule = "Bonjour, ";
                         cmp = this.genre + " " + this.user;
@@ -60,7 +60,7 @@ public class CNeuronFormulation {
                         phrase.add("As-tu passé une bonne nuit ?");
                     }
                 } else {
-                    if ((hour >= 10) && (hour <= 12)) {
+                    if ((hour >= 10) && (hour < 12)) {
                         if (this.vous == true) {
                             formule = "Bonjour, ";
                             cmp = this.genre + " " + this.user;
@@ -73,7 +73,7 @@ public class CNeuronFormulation {
                             phrase.add("Que fais-tu de beau ce matin ?");
                         }
                     } else {
-                        if ((hour >= 13) && (hour <= 14)) {
+                        if ((hour >= 13) && (hour < 14)) {
                             if (this.vous == true) {
                                 formule = "Bonjour,";
                                 cmp = this.genre + " " + this.user;
@@ -86,7 +86,7 @@ public class CNeuronFormulation {
                                 phrase.add("Es-tu prêt à travailler cet après-midi ?");
                             }
                         }
-                        if ((hour >= 15) && (hour <= 18)) {
+                        if ((hour >= 15) && (hour < 18)) {
                             if (this.vous == true) {
                                 formule = "Bonjour,";
                                 cmp = this.genre + " " + this.user;
@@ -99,7 +99,7 @@ public class CNeuronFormulation {
                                 phrase.add("En quoi puis-je t'aider ?");
                             }
                         }
-                        if ((hour >= 18) && (hour <= 20)) {
+                        if ((hour >= 18) && (hour < 20)) {
                             if (this.vous == true) {
                                 formule = "Bonsoir,";
                                 cmp = this.genre + " " + this.user;
@@ -112,7 +112,7 @@ public class CNeuronFormulation {
                                 phrase.add("Veux-tu travailler ou te divertir ce soir ?");
                             }
                         } else {
-                            if ((hour >= 20) && (hour <= 23)) {
+                            if ((hour >= 20) && (hour < 23)) {
                                 if (this.vous == true) {
                                     formule = "Bonsoir,";
                                     cmp = this.genre + " " + this.user;
