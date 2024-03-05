@@ -6,6 +6,8 @@ public class CGestionnaireNeuron {
     private boolean vous;
     private String oldSortie = "";
 
+    private String oldRequette = "";
+
     public CGestionnaireNeuron(String nameAssistant, String but, Boolean vous, String genre, String user,CArreraGestionText gText) {
         this.nameAssistant = nameAssistant;
         this.but = but;
@@ -53,4 +55,21 @@ public class CGestionnaireNeuron {
         return this.oldSortie;
     }
 
+    public boolean setOldRequette(String requette)
+    {
+        if (requette.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            this.oldRequette = gText.formatageText(requette);
+            return  true;
+        }
+    }
+
+    public String getOldrequette()
+    {
+        return this.oldRequette ;
+    }
 }

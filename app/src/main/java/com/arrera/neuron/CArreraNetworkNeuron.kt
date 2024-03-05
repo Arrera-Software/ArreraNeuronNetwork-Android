@@ -16,6 +16,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
         var sortieNb = 0
         var sortieText = ""
         var requetteFormater = gText.formatageText(requette)
+
         nChat.neuron(requetteFormater);
         sortieNb = nChat.outNeuronNb();
         if (sortieNb == 0 )
@@ -28,6 +29,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
                         if (random==1) {
                             sortieText = "La meteo a$ville" + "est$description" + "avec une temperature de $temperature °C."
                             gestionnaite.setOldSortie(sortieText)
+                            gestionnaite.setOldRequette(requetteFormater)
                             callback(sortieText)
                         }
                         else
@@ -36,12 +38,14 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
                             {
                                 sortieText = "La meteo a votre localisation est$description" + "avec une temperature de $temperature °C."
                                 gestionnaite.setOldSortie(sortieText)
+                                gestionnaite.setOldRequette(requetteFormater)
                                 callback(sortieText)
                             }
                             else
                             {
                                 sortieText =("La meteo a ta localisation est$description" + "avec une temperature de $temperature °C.")
                                 gestionnaite.setOldSortie(sortieText)
+                                gestionnaite.setOldRequette(requetteFormater)
                                 callback(sortieText)
                             }
                         }
@@ -50,6 +54,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
                     override fun onError(error: String) {
                         sortieText =(error)
                         gestionnaite.setOldSortie(sortieText)
+                        gestionnaite.setOldRequette(requetteFormater)
                         callback(sortieText)
                     }
                 })
@@ -62,12 +67,14 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
                         override fun onDataReceived(titre1: String,titre2: String) {
                             sortieText =("Les actualités sont $titre1 et $titre2")
                             gestionnaite.setOldSortie(sortieText)
+                            gestionnaite.setOldRequette(requetteFormater)
                             callback(sortieText)
                     }
 
                         override fun onError(error: String) {
                             sortieText =(error)
                             gestionnaite.setOldSortie(sortieText)
+                            gestionnaite.setOldRequette(requetteFormater)
                             callback(sortieText)
                         }
                     })
@@ -76,6 +83,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
                 {
                     sortieText =(nFormulation.nocomprehension());
                     gestionnaite.setOldSortie(sortieText)
+                    gestionnaite.setOldRequette(requetteFormater)
                     callback(sortieText)
                 }
             }
@@ -84,6 +92,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
         {
             sortieText =(nChat.outNeuronText())
             gestionnaite.setOldSortie(sortieText)
+            gestionnaite.setOldRequette(requetteFormater)
             callback(sortieText)
         }
     }
