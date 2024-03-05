@@ -107,8 +107,63 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                         }
                     }
                     else {
-                        this.sortieNb = 0;
-                        this.sortieText = "";
+                        if(oldSortie.contains("Avant de dire sa , laisse t'en raconter une")||oldSortie.contains("Avant de dire sa , laissez-vous en raconter une"))
+                        {
+                            if (requette.contains("non")||requette.contains("pas besoin"))
+                            {
+                                this.sortieNb = 1
+                                var nbRand = Random.nextInt(0,1)
+                                var listReponse1 = listOf("Ok commme vous voulez "+genre+" .",
+                                    "Etes-vous vraiment sur "+genre+" .")
+                                var listReponse2 = listOf("Ok comme tu veux "+user+" .",
+                                    "Es-tu vraiment sure de toi "+user+" .")
+                                if (etatVous) {
+                                    this.sortieText = listReponse1[nbRand]
+                                }
+                                else {
+                                    this.sortieText = listReponse2[nbRand]
+                                }
+                            }
+                            else
+                            {
+                                if (requette.contains("oui")||requette.contains("vasy")||requette.contains("comme tu veux")||requette.contains("si vous voulez"))
+                                {
+                                    var nRand =  Random.nextInt(0,8)
+                                    this.sortieNb = 1
+                                    if (etatVous)
+                                    {
+                                        this.sortieText = "Ok "+genre+"je vous en raconte une. "+this.blagues[nRand]+" "+this.reponsesBlagues[nRand]
+                                    }
+                                    else
+                                    {
+                                        this.sortieText = "Ok "+user+"je t'en raconte une. "+this.blagues[nRand]+" "+this.reponsesBlagues[nRand]
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (requette.contains("Je peux vous en racontez une autre") || requette.contains("Je peux t'en raconter une autre") || requette.contains("Si tu veux je peux t'en raconter une autre") )
+                            {
+                                if (requette.contains("vasy") || requette.contains("comme tu veux") || requette.contains("si vous voulez"))
+                                {
+                                    var nRand = Random.nextInt(0, 8)
+                                    if( etatVous ) {
+                                        this.sortieText = "Ok " + genre + " en voici une autre . " + this.blagues[nRand]+" "+this.reponsesBlagues[nRand] + " ."
+                                    }
+                                    else {
+                                        this.sortieText = "Ok " + user + " en voici une autre . " + this.blagues[nRand] + " " + this.reponsesBlagues[nRand] + " ."
+                                    }
+                                    this.sortieNb = 1
+                                }
+                            }
+                            else
+                            {
+                                this.sortieNb = 0;
+                                this.sortieText = "";
+                            }
+
+                        }
                     }
                 }
             }
