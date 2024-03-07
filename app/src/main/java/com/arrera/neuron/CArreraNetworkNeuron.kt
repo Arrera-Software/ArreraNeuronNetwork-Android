@@ -106,8 +106,10 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
 
     fun bonjour():String
     {
-        gestionnaite.setOldSortie("boot")
-        return nFormulation.salutation()
+        var sortie = nFormulation.salutation()
+        gestionnaite.setOldRequette("boot")
+        gestionnaite.setOldSortie(sortie)
+        return sortie
     }
 
     fun aurevoir():String
