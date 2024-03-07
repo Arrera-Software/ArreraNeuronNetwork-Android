@@ -228,26 +228,313 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                         else
                                         {
                                             if (requette.contains("toujours la") || requette.contains("es tu la" )
-                                                || requette.contains(name.lowercase()) || requette.contains("tu es la")
-                                                || requette.contains("vous étes la") || requette.contains("vous etes la"))
+                                            || requette.contains(name.lowercase()) || requette.contains("tu es la")
+                                            || requette.contains("vous étes la") || requette.contains("vous etes la"))
+                                            {
+                                                var nbRand = Random.nextInt(0, 2)
+                                                var listReponse = listOf("Je ne peut pas partir de tout façon .",
+                                                        "Je ne pas partir tant que je peux servir .",
+                                                        "A moin de m'arréter qui serait un acte horible je suis toujour la .")
+                                                if (etatVous )
                                                 {
-                                                    var nbRand = Random.nextInt(0, 2)
-                                                    var listReponse = listOf("Je ne peut pas partir de tout façon .",
-                                                            "Je ne pas partir tant que je peux servir .",
-                                                            "A moin de m'arréter qui serait un acte horible je suis toujour la .")
-                                                    if (etatVous )
+                                                    this.sortieText = "Oui, je suis toujours la " + genre + " " + user + "." + listReponse[nbRand]
+                                                }
+                                                else
+                                                {
+                                                    this.sortieText = "Oui, je suis toujours la " + user + listReponse[nbRand]
+                                                }
+                                                this.sortieNb = 1;
+                                            }
+                                            else
+                                            {
+                                                if (oldRequette=="boot")
+                                                {
+                                                    if(requette.contains("oui"))
                                                     {
-                                                        this.sortieText = "Oui, je suis toujours la " + genre + " " + user + "." + listReponse[nbRand]
+                                                        if (oldSortie.contains("J'espère que vous avez un peu dormi.")) {
+                                                            var nbRand = Random.nextInt(0, 1)
+                                                            var listReponse = listOf(
+                                                                "Tant mieux dit moi si vous avez besoin de moi",
+                                                                "Je suis content de savoir sa")
+                                                            this.sortieText = listReponse[nbRand] + " " + genre + " ."
+                                                            this.sortieNb = 1;
+                                                        }
+                                                        else
+                                                        {
+                                                            if (oldSortie.contains("Êtes-vous prêt à travailler ?")) {
+                                                                var nbRand = Random.nextInt(0, 1)
+                                                                var listReponse = listOf("Okay je peux vous aider sur quoi " + genre,
+                                                                    "Super sur quoi vous voulez travailler")
+                                                                this.sortieText = listReponse[nbRand] + " ."
+                                                                this.sortieNb = 1;
+                                                            }
+                                                            else
+                                                            {
+                                                                if (oldSortie.contains("J'espère que vous avez passé une bonne nuit.")) {
+                                                                    this.sortieText = "Super sur quoi vous voulez travailler " + genre + " ."
+                                                                    this.sortieNb = 1;
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (oldSortie.contains("J'espère que vous passez une bonne matinée.")) {
+                                                                        this.sortieText = "Formidable sur quoi vous occupez votre début de matinée"
+                                                                        this.sortieNb = 1;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (oldSortie.contains("J'espère que vous passez un bon début de journée.")) {
+                                                                            this.sortieText = "Formidable, vous travaillez sur quoi ?"
+                                                                            this.sortieNb = 1;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (oldSortie.contains("J'espère que vous passez une bonne après-midi ?")) {
+                                                                                this.sortieText = "Formidable que fais-vous de votre après-midi ."
+                                                                                this.sortieNb = 1;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (oldSortie.contains("Comment se passe votre début de soirée ?")) {
+                                                                                    this.sortieText = "Ceci me réjouit genre vous voulez faire quoi " + genre + " ."
+                                                                                    this.sortieNb = 1;
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    if (oldSortie.contains("J'espère que votre début de soirée se passe bien.")) {
+                                                                                        this.sortieText = "Formidable vous voulez faire quoi ce soir ."
+                                                                                        this.sortieNb =
+                                                                                            1;
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        if (oldSortie.contains("Comment se passe votre soirée ?")) {
+                                                                                            this.sortieText = "Parfais je peux vous aidez ce soir " + genre
+                                                                                            this.sortieNb = 1;
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            if (oldSortie.contains("J'espère que votre soirée s'est bien passée.")) {
+                                                                                                this.sortieText = "Ok vous vouliez faire quoi cette nuit ."
+                                                                                                this.sortieNb = 1;
+                                                                                            }
+                                                                                            else {
+                                                                                                if (oldSortie.contains("As-tu bien dormi ?")) {
+                                                                                                    this.sortieText = "C'est surper pour toi ."
+                                                                                                    this.sortieNb = 1;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    if (oldSortie.contains("As-tu passé une bonne nuit ?")) {
+                                                                                                        this.sortieText = "Tant mieux pour toi tu veux travailler sur quoi aujourd'hui ."
+                                                                                                        this.sortieNb = 1;
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        if (oldSortie.contains("Comment se passe ta matinée ?")) {
+                                                                                                            this.sortieText = "Parfais sur quoi on travaille aujourd'hui  ."
+                                                                                                            this.sortieNb = 1;
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            if (oldSortie.contains("Prêt à travailler ?")) {
+                                                                                                                this.sortieText = "Ok on travaille sur quoi aujourd'hui ."
+                                                                                                                this.sortieNb = 1;
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                if (oldSortie.contains("es-tu prêt à travailler cet après-midi ?")) {
+                                                                                                                    this.sortieText = "Ok on travaille sur quoi cette aprem ."
+                                                                                                                    this.sortieNb = 1;
+                                                                                                                } else {
+                                                                                                                    this.sortieNb = 0;
+                                                                                                                    this.sortieText = "";
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
+                                                }
                                                     else
                                                     {
-                                                        this.sortieText = "Oui, je suis toujours la " + user + listReponse[nbRand]
+                                                        if (requette.contains("non"))
+                                                        {
+                                                            if (oldSortie.contains("J'espère que vous avez un peu dormi"))
+                                                            {
+                                                                var nbRand = Random.nextInt(0,1)
+                                                                var listReponse = listOf("Je suis désolé pour vous je suis la pour vous aidez si vous a besoin "+genre,
+                                                                    "Vous dormirez mieux ce soir en attendant en quoi je peux vous aider")
+                                                                this.sortieText = listReponse[nbRand]+" ."
+                                                                this.sortieNb = 1
+                                                            }
+                                                            else
+                                                            {
+                                                                if (oldSortie.contains("Êtes-vous prêt à travailler ?"))
+                                                                {
+                                                                    var nbRand = Random.nextInt(0,1)
+                                                                    var listReponse = listOf("Okay, vous voulez faire quoi",
+                                                                        "OK je reste disponible pour vous "+genre)
+                                                                    this.sortieText = listReponse[nbRand]+" ."
+                                                                    this.sortieNb = 1
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (oldSortie.contains("J'espère que vous avez passé une bonne nuit."))
+                                                                    {
+                                                                        this.sortieText = "Dommage je reste disponible si vous avez besoin de moi "
+                                                                        this.sortieNb = 1
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (oldSortie.contains("J'espère que vous avez bien dormi."))
+                                                                        {
+                                                                            this.sortieText = "Dommage si vous avez besoin de moi je suis la ."
+                                                                            this.sortieNb = 1
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (oldSortie.contains("J'espère que vous passez une bonne matinée."))
+                                                                            {
+                                                                                this.sortieText = "OK je suis à votre service si vous avez besoin de moi ."
+                                                                                this.sortieNb = 1
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                if (oldSortie.contains("J'espère que vous passez un bon début de journée."))
+                                                                                {
+                                                                                    this.sortieText = "Dommage comment je peux vous la rendre meilleure "+genre+"."
+                                                                                    this.sortieNb = 1
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    if (oldSortie.contains("J'espère que vous passez une bonne après-midi ?"))
+                                                                                    {
+                                                                                        this.sortieText = "Ha, je reste la si vous avez besoin de moi je suis la ."
+                                                                                        this.sortieNb = 1
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        if (oldSortie.contains("Comment se passe votre début de soirée ?"))
+                                                                                        {
+                                                                                            this.sortieText = "Comment je peux la rendre meilleur "+genre
+                                                                                            this.sortieNb = 1
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            if (oldSortie.contains("J'espère que votre début de soirée se passe bien."))
+                                                                                            {
+                                                                                                this.sortieText = "Comment je peux rendre votre soirée exceptionnelle ."
+                                                                                                this.sortieNb = 1
+                                                                                            }
+                                                                                            else {
+                                                                                                if (oldSortie.contains("Comment se passe votre soirée ?")) {
+                                                                                                    this.sortieText = "Ceci me rend triste ."
+                                                                                                    this.sortieNb = 1
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    if (oldSortie.contains("J'espère que votre soirée s'est bien passée."))
+                                                                                                    {
+                                                                                                        this.sortieText = "Je vous conseiller d'allez dormir ."
+                                                                                                        this.sortieNb = 1
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        if (oldSortie.contains("As-tu bien dormi ?"))
+                                                                                                        {
+                                                                                                            this.sortieText = "Dommage je peux d'aidez sur quoi ?"
+                                                                                                            this.sortieNb = 1
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            if (oldSortie.contains("As-tu passé une bonne nuit ?"))
+                                                                                                            {
+                                                                                                                this.sortieText = "Dommage comment je peux t'aider aujourd'hui ?"
+                                                                                                                this.sortieNb = 1
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                if (oldSortie.contains("Prêt à travailler ?"))
+                                                                                                                {
+                                                                                                                    this.sortieText = "Ok je reste la au besoin ."
+                                                                                                                    this.sortieNb = 1
+                                                                                                                }
+                                                                                                                else
+                                                                                                                {
+                                                                                                                    if (oldSortie.contains("Es-tu prêt à travailler cet après-midi ?"))
+                                                                                                                    {
+                                                                                                                        this.sortieText = "Ok dit moi quand tu sera prét ."
+                                                                                                                        this.sortieNb = 1
+                                                                                                                    }
+                                                                                                                    else
+                                                                                                                    {
+                                                                                                                        this.sortieText = ""
+                                                                                                                        this.sortieNb = 0
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            if (requette.contains("bien"))
+                                                            {
+                                                                if (oldSortie.contains("Comment se passe votre début de soirée ?"))
+                                                                {
+                                                                    this.sortieText = "Ceci me réjouit "+genre+" que vous voulez faire ce soir ?"
+                                                                    this.sortieNb = 1
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (oldSortie.contains("Comment se passe votre soirée ?"))
+                                                                    {
+                                                                        this.sortieText = "Parfais en quoi je vous aidez ce soir "+genre+" ?"
+                                                                        this.sortieNb = 1
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (oldSortie.contains("Comment se passe ta matinée ?"))
+                                                                        {
+                                                                            this.sortieText = "Parfais sur quoi on travaille aujourd'hui ?"
+                                                                            this.sortieNb = 1
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            this.sortieNb = 0;
+                                                                            this.sortieText = "";
+                                                                        }
+
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
-                                                    this.sortieNb = 1;
                                                 }
                                                 else {
-                                                this.sortieNb = 0;
-                                                this.sortieText = "";
+                                                    this.sortieNb = 0;
+                                                    this.sortieText = "";
+                                                }
                                             }
                                         }
                                     }
