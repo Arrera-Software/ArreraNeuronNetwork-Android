@@ -32,6 +32,12 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
         "En fait, dans tous les gels douches. Qu’une fois dans la salle de bain il n’y ait aucune issue possible."
     )
 
+    private var listFonction = listOf(
+        "ouvrir une application",
+        "aider sur les recherches de internet",
+        "donner la meteo",
+        "donner les actualites")
+
     fun neuron(requette :String)
     {
         var oldSortie = gestionnaire.oldSortie
@@ -247,7 +253,42 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                             }
                                             else
                                             {
-                                                if (oldRequette=="boot")
+                                                if (requette.contains("quesque tu peux faire")||requette.contains("tu peux faire quoi")||requette.contains("tu peux faire quoi"))
+                                                {
+                                                    var nblist = listFonction.size
+                                                    var text = ""
+                                                    var tampons = ""
+                                                    for (i in 0 until nblist)
+                                                    {
+                                                        tampons = text
+                                                        if (i==nblist-1)
+                                                        {
+                                                            text = tampons+ " et "+listFonction[i]
+                                                        }
+                                                        else
+                                                        {
+                                                            if (i==0){
+                                                                text = listFonction[i]
+                                                            }
+                                                            else
+                                                            {
+                                                                text = tampons +","+listFonction[i]
+                                                            }
+
+                                                        }
+                                                    }
+                                                    if (etatVous)
+                                                    {
+                                                        sortieText = "Je peux vous aidez a "+text
+                                                    }
+                                                    else
+                                                    {
+                                                        sortieText = "Je peux t'aidez a "+text
+                                                    }
+                                                    this.sortieNb = 1
+                                                }
+                                                if ((oldRequette=="boot")&&(requette.contains("oui")||
+                                                            requette.contains("non")||requette.contains("bien")))
                                                 {
                                                     if(requette.contains("oui"))
                                                     {
@@ -532,8 +573,41 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                     }
                                                 }
                                                 else {
-                                                    this.sortieNb = 0;
-                                                    this.sortieText = "";
+                                                    if (requette.contains("quesque tu peux faire")||requette.contains("tu peux faire quoi")||requette.contains("tu peux faire quoi"))
+                                                    {
+                                                        var nblist = listFonction.size
+                                                        var text = ""
+                                                        var tampons = ""
+                                                        for (i in 0 until nblist)
+                                                        {
+                                                            tampons = text
+                                                            if (i == nblist - 1)
+                                                            {
+                                                                text = tampons + " et " + listFonction[i]
+                                                            } else
+                                                            {
+                                                                if (i == 0) {
+                                                                    text = listFonction[i]
+                                                                } else {
+                                                                    text = tampons + "," + listFonction[i]
+                                                                }
+
+                                                            }
+                                                        }
+                                                        if (etatVous)
+                                                        {
+                                                            sortieText = "Je peux vous aidez a " + text
+                                                        } else
+                                                        {
+                                                            sortieText = "Je peux t'aidez a " + text
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        this.sortieNb = 0;
+                                                        this.sortieText = "";
+                                                    }
                                                 }
                                             }
                                         }
