@@ -2,10 +2,10 @@ package com.arrera.neuron
 
 import kotlin.random.Random
 
-class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val nFormulation: CNeuronFormulation)
+class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val nFormulation: CNeuronFormulation , private val gest : CArreraGestionText)
 {
     private var sortieText : String = "" ;
-    private var sortieNb : Int = 0 ;
+    //private var sortieNb : Int = 0 ;
     private var blagues = listOf(
         "Que dit une noisette quand elle tombe dans l’eau ?",
         "Comment est-ce que les abeilles communiquent entre elles ?",
@@ -51,12 +51,10 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
         var nbDiscution = gestionnaire.nbDiscution
         if (requette.contains("bonjour")||requette.contains("salut")||requette.contains("coucou")||requette.contains("bonsoir"))
         {
-            this.sortieNb = 1 ;
             this.sortieText = nFormulation.salutation();
         }
         else {
             if (requette.contains("au revoir")||requette.contains("a bientot")||requette.contains("a plus tart")||requette.contains("bye")||requette.contains("quitter")||requette.contains("arret")||requette.contains("arreter")){
-                this.sortieNb = 15;
                 this.sortieText = nFormulation.aurevoir();
             }
             else
@@ -65,13 +63,11 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                 {
                     if (oldRequette.contains("vous etes pas drole")||oldRequette.contains("tu es pas drole")||oldRequette.contains("c'est pas drole")||oldRequette.contains("pas drole"))
                     {
-                        this.sortieNb = 1
                         this.sortieText = "Je peux pas raconter un blague si je suis pas drole."
                     }
                     else
                     {
                         var nRand =  Random.nextInt(0,8)
-                        this.sortieNb = 1
                         this.sortieText = this.blagues[nRand]+" "+this.reponsesBlagues[nRand]
                     }
                 }
@@ -95,8 +91,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                             {
                                 sortieText = listTU[nbRand]
                             }
-                            sortieNb = 1
-
                         }
                         else
                         {
@@ -113,7 +107,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                             {
                                 sortieText = listTU[nbRand]
                             }
-                            sortieNb = 1
                         }
                     }
                     else {
@@ -121,7 +114,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                         {
                             if (requette.contains("non")||requette.contains("pas besoin"))
                             {
-                                this.sortieNb = 1
                                 var nbRand = Random.nextInt(0,1)
                                 var listReponse1 = listOf("Ok commme vous voulez "+genre+" .",
                                     "Etes-vous vraiment sur "+genre+" .")
@@ -139,7 +131,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                 if (requette.contains("oui")||requette.contains("vasy")||requette.contains("comme tu veux")||requette.contains("si vous voulez"))
                                 {
                                     var nRand =  Random.nextInt(0,8)
-                                    this.sortieNb = 1
                                     if (etatVous)
                                     {
                                         this.sortieText = "Ok "+genre+"je vous en raconte une. "+this.blagues[nRand]+" "+this.reponsesBlagues[nRand]
@@ -164,7 +155,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                     else {
                                         this.sortieText = "Ok " + user + " en voici une autre . " + this.blagues[nRand] + " " + this.reponsesBlagues[nRand] + " ."
                                     }
-                                    this.sortieNb = 1
                                 }
                             }
                             else
@@ -179,7 +169,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                     var listReponse = listOf("Je suis un programme informatique je resent pas de sentiment.",
                                             "Je ne peut pas resentir de sentiment, je suis qu'un programmme informatique.")
                                     sortieText = listReponse[nbRand]
-                                    sortieNb = 1
                                 }
                                 else
                                 {
@@ -193,12 +182,10 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                             else {
                                                 sortieText = "Je te l'ai deja dit " + user + " je peux pas trop t'en dire plus je n'est pas de passion ni de hobbie je ne suis qu'un programme informatique qui a pour bute " + bute + "."
                                             }
-                                            sortieNb= 1
                                         }
                                         else
                                         {
                                             sortieText = "Je suis un assistant personnelle nommer " + name + " qui a été crée par " + createur + ". Je n'ai pas pas de passion ni de hobbie du a ma conditions de programme informatique."
-                                            sortieNb= 1
                                         }
                                     }
                                     else {
@@ -228,8 +215,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                 }
                                             }
                                             sortieText = debutPhrase + finPhrase
-                                            this.sortieNb = 1;
-
                                         }
                                         else
                                         {
@@ -249,7 +234,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                 {
                                                     this.sortieText = "Oui, je suis toujours la " + user + listReponse[nbRand]
                                                 }
-                                                this.sortieNb = 1;
                                             }
                                             else
                                             {
@@ -285,7 +269,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                     {
                                                         sortieText = "Je peux t'aidez a "+text
                                                     }
-                                                    this.sortieNb = 1
                                                 }
                                                 if ((oldRequette=="boot")&&(requette.contains("oui")||
                                                             requette.contains("non")||requette.contains("bien")))
@@ -298,7 +281,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                 "Tant mieux dit moi si vous avez besoin de moi",
                                                                 "Je suis content de savoir sa")
                                                             this.sortieText = listReponse[nbRand] + " " + genre + " ."
-                                                            this.sortieNb = 1;
                                                         }
                                                         else
                                                         {
@@ -307,87 +289,72 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                 var listReponse = listOf("Okay je peux vous aider sur quoi " + genre,
                                                                     "Super sur quoi vous voulez travailler")
                                                                 this.sortieText = listReponse[nbRand] + " ."
-                                                                this.sortieNb = 1;
+
                                                             }
                                                             else
                                                             {
                                                                 if (oldSortie.contains("J'espère que vous avez passé une bonne nuit.")) {
                                                                     this.sortieText = "Super sur quoi vous voulez travailler " + genre + " ."
-                                                                    this.sortieNb = 1;
                                                                 }
                                                                 else
                                                                 {
                                                                     if (oldSortie.contains("J'espère que vous passez une bonne matinée.")) {
                                                                         this.sortieText = "Formidable sur quoi vous occupez votre début de matinée"
-                                                                        this.sortieNb = 1;
                                                                     }
                                                                     else
                                                                     {
                                                                         if (oldSortie.contains("J'espère que vous passez un bon début de journée.")) {
                                                                             this.sortieText = "Formidable, vous travaillez sur quoi ?"
-                                                                            this.sortieNb = 1;
                                                                         }
                                                                         else
                                                                         {
                                                                             if (oldSortie.contains("J'espère que vous passez une bonne après-midi ?")) {
                                                                                 this.sortieText = "Formidable que fais-vous de votre après-midi ."
-                                                                                this.sortieNb = 1;
                                                                             }
                                                                             else
                                                                             {
                                                                                 if (oldSortie.contains("Comment se passe votre début de soirée ?")) {
                                                                                     this.sortieText = "Ceci me réjouit genre vous voulez faire quoi " + genre + " ."
-                                                                                    this.sortieNb = 1;
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     if (oldSortie.contains("J'espère que votre début de soirée se passe bien.")) {
                                                                                         this.sortieText = "Formidable vous voulez faire quoi ce soir ."
-                                                                                        this.sortieNb =
-                                                                                            1;
                                                                                     }
                                                                                     else
                                                                                     {
                                                                                         if (oldSortie.contains("Comment se passe votre soirée ?")) {
                                                                                             this.sortieText = "Parfais je peux vous aidez ce soir " + genre
-                                                                                            this.sortieNb = 1;
                                                                                         }
                                                                                         else
                                                                                         {
                                                                                             if (oldSortie.contains("J'espère que votre soirée s'est bien passée.")) {
                                                                                                 this.sortieText = "Ok vous vouliez faire quoi cette nuit ."
-                                                                                                this.sortieNb = 1;
                                                                                             }
                                                                                             else {
                                                                                                 if (oldSortie.contains("As-tu bien dormi ?")) {
                                                                                                     this.sortieText = "C'est surper pour toi ."
-                                                                                                    this.sortieNb = 1;
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     if (oldSortie.contains("As-tu passé une bonne nuit ?")) {
                                                                                                         this.sortieText = "Tant mieux pour toi tu veux travailler sur quoi aujourd'hui ."
-                                                                                                        this.sortieNb = 1;
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         if (oldSortie.contains("Comment se passe ta matinée ?")) {
                                                                                                             this.sortieText = "Parfais sur quoi on travaille aujourd'hui  ."
-                                                                                                            this.sortieNb = 1;
                                                                                                         }
                                                                                                         else
                                                                                                         {
                                                                                                             if (oldSortie.contains("Prêt à travailler ?")) {
                                                                                                                 this.sortieText = "Ok on travaille sur quoi aujourd'hui ."
-                                                                                                                this.sortieNb = 1;
                                                                                                             }
                                                                                                             else
                                                                                                             {
                                                                                                                 if (oldSortie.contains("es-tu prêt à travailler cet après-midi ?")) {
                                                                                                                     this.sortieText = "Ok on travaille sur quoi cette aprem ."
-                                                                                                                    this.sortieNb = 1;
                                                                                                                 } else {
-                                                                                                                    this.sortieNb = 0;
                                                                                                                     this.sortieText = "";
                                                                                                             }
                                                                                                         }
@@ -416,7 +383,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                 var listReponse = listOf("Je suis désolé pour vous je suis la pour vous aidez si vous a besoin "+genre,
                                                                     "Vous dormirez mieux ce soir en attendant en quoi je peux vous aider")
                                                                 this.sortieText = listReponse[nbRand]+" ."
-                                                                this.sortieNb = 1
                                                             }
                                                             else
                                                             {
@@ -426,101 +392,86 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                     var listReponse = listOf("Okay, vous voulez faire quoi",
                                                                         "OK je reste disponible pour vous "+genre)
                                                                     this.sortieText = listReponse[nbRand]+" ."
-                                                                    this.sortieNb = 1
                                                                 }
                                                                 else
                                                                 {
                                                                     if (oldSortie.contains("J'espère que vous avez passé une bonne nuit."))
                                                                     {
                                                                         this.sortieText = "Dommage je reste disponible si vous avez besoin de moi "
-                                                                        this.sortieNb = 1
                                                                     }
                                                                     else
                                                                     {
                                                                         if (oldSortie.contains("J'espère que vous avez bien dormi."))
                                                                         {
                                                                             this.sortieText = "Dommage si vous avez besoin de moi je suis la ."
-                                                                            this.sortieNb = 1
                                                                         }
                                                                         else
                                                                         {
                                                                             if (oldSortie.contains("J'espère que vous passez une bonne matinée."))
                                                                             {
                                                                                 this.sortieText = "OK je suis à votre service si vous avez besoin de moi ."
-                                                                                this.sortieNb = 1
+
                                                                             }
                                                                             else
                                                                             {
                                                                                 if (oldSortie.contains("J'espère que vous passez un bon début de journée."))
                                                                                 {
                                                                                     this.sortieText = "Dommage comment je peux vous la rendre meilleure "+genre+"."
-                                                                                    this.sortieNb = 1
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     if (oldSortie.contains("J'espère que vous passez une bonne après-midi ?"))
                                                                                     {
                                                                                         this.sortieText = "Ha, je reste la si vous avez besoin de moi je suis la ."
-                                                                                        this.sortieNb = 1
                                                                                     }
                                                                                     else
                                                                                     {
-                                                                                        if (oldSortie.contains("Comment se passe votre début de soirée ?"))
-                                                                                        {
-                                                                                            this.sortieText = "Comment je peux la rendre meilleur "+genre
-                                                                                            this.sortieNb = 1
+                                                                                        if (oldSortie.contains("Comment se passe votre début de soirée ?")) {
+                                                                                            this.sortieText = "Comment je peux la rendre meilleur " + genre
                                                                                         }
                                                                                         else
                                                                                         {
                                                                                             if (oldSortie.contains("J'espère que votre début de soirée se passe bien."))
                                                                                             {
                                                                                                 this.sortieText = "Comment je peux rendre votre soirée exceptionnelle ."
-                                                                                                this.sortieNb = 1
                                                                                             }
                                                                                             else {
                                                                                                 if (oldSortie.contains("Comment se passe votre soirée ?")) {
                                                                                                     this.sortieText = "Ceci me rend triste ."
-                                                                                                    this.sortieNb = 1
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     if (oldSortie.contains("J'espère que votre soirée s'est bien passée."))
                                                                                                     {
                                                                                                         this.sortieText = "Je vous conseiller d'allez dormir ."
-                                                                                                        this.sortieNb = 1
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         if (oldSortie.contains("As-tu bien dormi ?"))
                                                                                                         {
                                                                                                             this.sortieText = "Dommage je peux d'aidez sur quoi ?"
-                                                                                                            this.sortieNb = 1
                                                                                                         }
                                                                                                         else
                                                                                                         {
                                                                                                             if (oldSortie.contains("As-tu passé une bonne nuit ?"))
                                                                                                             {
                                                                                                                 this.sortieText = "Dommage comment je peux t'aider aujourd'hui ?"
-                                                                                                                this.sortieNb = 1
                                                                                                             }
                                                                                                             else
                                                                                                             {
                                                                                                                 if (oldSortie.contains("Prêt à travailler ?"))
                                                                                                                 {
                                                                                                                     this.sortieText = "Ok je reste la au besoin ."
-                                                                                                                    this.sortieNb = 1
                                                                                                                 }
                                                                                                                 else
                                                                                                                 {
                                                                                                                     if (oldSortie.contains("Es-tu prêt à travailler cet après-midi ?"))
                                                                                                                     {
                                                                                                                         this.sortieText = "Ok dit moi quand tu sera prét ."
-                                                                                                                        this.sortieNb = 1
                                                                                                                     }
                                                                                                                     else
                                                                                                                     {
                                                                                                                         this.sortieText = ""
-                                                                                                                        this.sortieNb = 0
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -544,25 +495,22 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                 if (oldSortie.contains("Comment se passe votre début de soirée ?"))
                                                                 {
                                                                     this.sortieText = "Ceci me réjouit "+genre+" que vous voulez faire ce soir ?"
-                                                                    this.sortieNb = 1
                                                                 }
                                                                 else
                                                                 {
                                                                     if (oldSortie.contains("Comment se passe votre soirée ?"))
                                                                     {
                                                                         this.sortieText = "Parfais en quoi je vous aidez ce soir "+genre+" ?"
-                                                                        this.sortieNb = 1
                                                                     }
                                                                     else
                                                                     {
                                                                         if (oldSortie.contains("Comment se passe ta matinée ?"))
                                                                         {
                                                                             this.sortieText = "Parfais sur quoi on travaille aujourd'hui ?"
-                                                                            this.sortieNb = 1
+
                                                                         }
                                                                         else
                                                                         {
-                                                                            this.sortieNb = 0;
                                                                             this.sortieText = "";
                                                                         }
 
@@ -608,7 +556,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                         if (requette.contains("oui"))
                                                         {
                                                             this.sortieText = "OK parfais .";
-                                                            this.sortieNb = 1;
                                                         }
                                                         else{
                                                             if (requette.contains("non"))
@@ -621,7 +568,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                {
                                                                    this.sortieText = "Ok "+user+" ,Je reste la si tu a besoin de moi."
                                                                }
-                                                                this.sortieNb = 1;
                                                             }
                                                             else
                                                             {
@@ -635,7 +581,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                     {
                                                                         this.sortieText = "De rien "+user+",sur quoi je peux encore t'aider ?";
                                                                     }
-                                                                    this.sortieNb = 1;
                                                                 }
                                                                 else
                                                                 {
@@ -649,11 +594,9 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                                         {
                                                                             this.sortieText = "Ok";
                                                                         }
-                                                                        this.sortieNb = 1;
                                                                     }
                                                                     else
                                                                     {
-                                                                        this.sortieNb = 0;
                                                                         this.sortieText = "";
                                                                     }
                                                                 }
@@ -666,7 +609,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                     }
                                 }
                             }
-
                         }
                     }
                 }
@@ -681,6 +623,6 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
 
     fun outNeuronNb () :Int
     {
-        return sortieNb
+        return gest.testOut(sortieText)
     }
 }

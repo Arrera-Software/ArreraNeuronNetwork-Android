@@ -8,7 +8,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private val gText : CArreraGestionText = CArreraGestionText()
     private val gestionnaite : CGestionnaireNeuron = CGestionnaireNeuron(this.nameAssistant,this.but,this.vous,this.genre,this.user,this.createur,gText)
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
-    private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation);
+    private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation,gText);
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();
     private val fActu : CfArreraActu = CfArreraActu()
     fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)

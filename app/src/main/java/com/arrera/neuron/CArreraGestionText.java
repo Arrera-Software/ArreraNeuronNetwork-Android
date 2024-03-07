@@ -12,4 +12,16 @@ public class CArreraGestionText {
                 .toLowerCase();
         return sortie;
     }
+
+    public int testOut(String sortie)
+    {
+        if (sortie.isEmpty())
+        {
+            return 0 ;
+        }
+        else
+        {
+            return 1 ;
+        }
+    }
 }
