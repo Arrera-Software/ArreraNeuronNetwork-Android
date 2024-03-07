@@ -2,7 +2,9 @@ package com.arrera.neuron
 
 import kotlin.random.Random
 
-class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val nFormulation: CNeuronFormulation , private val gest : CArreraGestionText)
+class CNeuronChat(private val gestionnaire : CGestionnaireNeuron ,
+                  private val nFormulation: CNeuronFormulation ,
+                  private val gest : CArreraGestionText)
 {
     private var sortieText : String = "" ;
     //private var sortieNb : Int = 0 ;
