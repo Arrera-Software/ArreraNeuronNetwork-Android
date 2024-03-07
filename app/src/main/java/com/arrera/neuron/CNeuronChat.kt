@@ -605,8 +605,60 @@ class CNeuronChat(private val gestionnaire : CGestionnaireNeuron , private val n
                                                     }
                                                     else
                                                     {
-                                                        this.sortieNb = 0;
-                                                        this.sortieText = "";
+                                                        if (requette.contains("oui"))
+                                                        {
+                                                            this.sortieText = "OK parfais .";
+                                                            this.sortieNb = 1;
+                                                        }
+                                                        else{
+                                                            if (requette.contains("non"))
+                                                            {
+                                                               if (etatVous)
+                                                               {
+                                                                   this.sortieText = "OK "+genre+" "+user+ " je reste la au besoin.";
+                                                               }
+                                                               else
+                                                               {
+                                                                   this.sortieText = "Ok "+user+" ,Je reste la si tu a besoin de moi."
+                                                               }
+                                                                this.sortieNb = 1;
+                                                            }
+                                                            else
+                                                            {
+                                                                if (requette.contains("merci"))
+                                                                {
+                                                                    if (etatVous)
+                                                                    {
+                                                                        this.sortieText = "De rien "+genre+",je reste a votre servie si vous avez besoin de moi ?";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        this.sortieText = "De rien "+user+",sur quoi je peux encore t'aider ?";
+                                                                    }
+                                                                    this.sortieNb = 1;
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (requette.contains("ta gueule")||requette.contains("tais toi"))
+                                                                    {
+                                                                        if (etatVous)
+                                                                        {
+                                                                            this.sortieText = "Ok "+genre+" je me tais";
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            this.sortieText = "Ok";
+                                                                        }
+                                                                        this.sortieNb = 1;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        this.sortieNb = 0;
+                                                                        this.sortieText = "";
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
