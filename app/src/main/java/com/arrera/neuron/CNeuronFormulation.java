@@ -72,8 +72,9 @@ public class CNeuronFormulation {
                             phrase.add("Comment se passe ta matinée ?");
                             phrase.add("Que fais-tu de beau ce matin ?");
                         }
-                    } else {
-                        if ((hour >= 13) && (hour < 14)) {
+                    } else
+                    {
+                        if ((hour >= 13) && (hour <= 14)) {
                             if (this.vous == true) {
                                 formule = "Bonjour,";
                                 cmp = this.genre + " " + this.user;
@@ -86,73 +87,88 @@ public class CNeuronFormulation {
                                 phrase.add("Es-tu prêt à travailler cet après-midi ?");
                             }
                         }
-                        if ((hour >= 15) && (hour < 18)) {
-                            if (this.vous == true) {
-                                formule = "Bonjour,";
-                                cmp = this.genre + " " + this.user;
-                                phrase.add("Sur quoi puis-je vous aider cet après-midi ?");
-                                phrase.add("Comment puis-je vous aider ?");
-                            } else {
-                                formule = "Salut,";
-                                cmp = this.user;
-                                phrase.add("Sur quoi travailles-tu ?");
-                                phrase.add("En quoi puis-je t'aider ?");
-                            }
-                        }
-                        if ((hour >= 18) && (hour < 20)) {
-                            if (this.vous == true) {
-                                formule = "Bonsoir,";
-                                cmp = this.genre + " " + this.user;
-                                phrase.add("Comment se passe votre début de soirée ?");
-                                phrase.add("J'espère que votre début de soirée se passe bien.");
-                            } else {
-                                formule = "Alors";
-                                cmp = this.user;
-                                phrase.add("Que veux-tu faire ce soir ?");
-                                phrase.add("Veux-tu travailler ou te divertir ce soir ?");
-                            }
-                        } else {
-                            if ((hour >= 20) && (hour < 23)) {
+                        else
+                        {
+                            if ((hour >= 15) && (hour < 18)) {
                                 if (this.vous == true) {
-                                    formule = "Bonsoir,";
+                                    formule = "Bonjour,";
                                     cmp = this.genre + " " + this.user;
-                                    phrase.add("Comment se passe votre soirée ?");
-                                    phrase.add("J'espère que votre soirée s'est bien passée.");
+                                    phrase.add("Sur quoi puis-je vous aider cet après-midi ?");
+                                    phrase.add("Comment puis-je vous aider ?");
                                 } else {
-                                    formule = "*bâille*";
+                                    formule = "Salut,";
                                     cmp = this.user;
-                                    phrase.add("Que fais-tu si tard ?");
-                                    phrase.add("Pourquoi me réveilles-tu si tard ?");
-                                }
-                            } else {
-                                if ((hour >= 0) && (hour < 3)) {
-                                    if (this.vous == true) {
-                                        formule = "Bonjour,";
-                                        cmp = this.genre + " " + this.user;
-                                        phrase.add("Que faites-vous si tôt ?");
-                                        phrase.add("J'espère que vous avez un peu dormi.");
-                                    } else {
-                                        formule = "Zzzz";
-                                        cmp = this.user;
-                                        phrase.add("Il faudrait peut-être dormir, non ?");
-                                        phrase.add("Comment peux-tu travailler si tard ?");
-                                    }
-                                } else {
-                                    if (this.vous == true) {
-                                        formule = "Bonjour,";
-                                        cmp = this.genre + " " + this.user;
-                                        phrase.add("Que voulez-vous qu'on fasse ?");
-                                        phrase.add("");
-                                    } else {
-                                        formule = "Salut,";
-                                        cmp = this.user;
-                                        phrase.add("Que veux-tu que je t'aide à faire ?");
-                                        phrase.add("");
-                                    }
+                                    phrase.add("Sur quoi travailles-tu ?");
+                                    phrase.add("En quoi puis-je t'aider ?");
                                 }
                             }
+                            else
+                            {
+                                if ((hour >= 18) && (hour < 20))
+                                {
+                                    if (this.vous == true) {
+                                        formule = "Bonsoir,";
+                                        cmp = this.genre + " " + this.user;
+                                        phrase.add("Comment se passe votre début de soirée ?");
+                                        phrase.add("J'espère que votre début de soirée se passe bien.");
+                                    } else {
+                                        formule = "Alors";
+                                        cmp = this.user;
+                                        phrase.add("Que veux-tu faire ce soir ?");
+                                        phrase.add("Veux-tu travailler ou te divertir ce soir ?");
+                                }
+                            }
+                            else
+                            {
+                                    if ((hour >= 20) && (hour < 23))
+                                    {
+                                        if (this.vous == true) {
+                                            formule = "Bonsoir,";
+                                            cmp = this.genre + " " + this.user;
+                                            phrase.add("Comment se passe votre soirée ?");
+                                            phrase.add("J'espère que votre soirée s'est bien passée.");
+                                        } else {
+                                            formule = "*bâille*";
+                                            cmp = this.user;
+                                            phrase.add("Que fais-tu si tard ?");
+                                            phrase.add("Pourquoi me réveilles-tu si tard ?");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if ((hour >= 0) && (hour < 3))
+                                        {
+                                            if (this.vous == true) {
+                                                formule = "Bonjour,";
+                                                cmp = this.genre + " " + this.user;
+                                                phrase.add("Que faites-vous si tôt ?");
+                                                phrase.add("J'espère que vous avez un peu dormi.");
+                                            } else {
+                                                formule = "Zzzz";
+                                                cmp = this.user;
+                                                phrase.add("Il faudrait peut-être dormir, non ?");
+                                                phrase.add("Comment peux-tu travailler si tard ?");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (this.vous == true) {
+                                                formule = "Bonjour,";
+                                                cmp = this.genre + " " + this.user;
+                                                phrase.add("Que voulez-vous qu'on fasse ?");
+                                                phrase.add("");
+                                            } else {
+                                                formule = "Salut,";
+                                                cmp = this.user;
+                                                phrase.add("Que veux-tu que je t'aide à faire ?");
+                                                phrase.add("");
+                                            }
+                                        }
+                                    }
+                            }   }
                         }
                     }
+
                 }
 
             }
