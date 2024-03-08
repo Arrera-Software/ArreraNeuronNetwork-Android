@@ -9,6 +9,7 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
     private val gestionnaite : CGestionnaireNeuron = CGestionnaireNeuron(this.nameAssistant,this.but,this.vous,this.genre,this.user,this.createur,gText)
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
     private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation,gText);
+    private val nTime : CNeuronTime = CNeuronTime(gestionnaite,aDate,gText)
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();
     private val fActu : CfArreraActu = CfArreraActu()
     fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)
@@ -86,12 +87,26 @@ class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:S
                 }
                 else
                 {
-                    sortieText =(nFormulation.nocomprehension());
-                    gestionnaite.setOldSortie(sortieText)
-                    gestionnaite.setOldRequette(requetteFormater)
-                    gestionnaite.addDiscution()
-                    callback(sortieText)
+                    nTime.neuron(requetteFormater)
+                    sortieNb = nTime.outNeuronNb()
+                    if (sortieNb==0)
+                    {
+                        sortieText =(nFormulation.nocomprehension());
+                        gestionnaite.setOldSortie(sortieText)
+                        gestionnaite.setOldRequette(requetteFormater)
+                        gestionnaite.addDiscution()
+                        callback(sortieText)
+                    }
+                    else
+                    {
+                        sortieText =(nTime.outNeuronText());
+                        gestionnaite.setOldSortie(sortieText)
+                        gestionnaite.setOldRequette(requetteFormater)
+                        gestionnaite.addDiscution()
+                        callback(sortieText)
+                    }
                 }
+
             }
         }
         else
