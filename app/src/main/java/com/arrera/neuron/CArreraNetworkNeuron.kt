@@ -2,7 +2,13 @@ package com.arrera.neuron
 
 import kotlin.random.Random
 
-class CArreraNetworkNeuron( private val nameAssistant:String,  private val but:String, private val  vous:Boolean, private val genre:String, private val user:String,private val createur:String) {
+class CArreraNetworkNeuron(private val nameAssistant:String,
+                           private val but:String,
+                           private val  vous:Boolean,
+                           private val genre:String,
+                           private val user:String,
+                           private val createur:String)
+{
 
     private val aDate : CArreraDate = CArreraDate()
     private val gText : CArreraGestionText = CArreraGestionText()
