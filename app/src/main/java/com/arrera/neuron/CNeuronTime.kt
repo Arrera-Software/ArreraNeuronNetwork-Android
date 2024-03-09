@@ -14,7 +14,14 @@ class CNeuronTime(private val gestionnaire : CGestionnaireNeuron,
         }
         else
         {
-            sortietext = ""
+            if (requette.contains("heure"))
+            {
+                sortietext = "Il est "+aDate.hour+" heure "+aDate.min
+            }
+            else
+            {
+                sortietext = ""
+            }
         }
     }
 
