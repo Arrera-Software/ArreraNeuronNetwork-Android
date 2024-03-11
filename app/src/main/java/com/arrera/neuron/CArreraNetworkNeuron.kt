@@ -61,7 +61,14 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                     }
 
                     override fun onError(error: String) {
-                        sortieText =(error)
+                        if (etatvous)
+                        {
+                            sortieText = "Desoler , "+genre+" "+user+" mais un probleme technique m'empeche de vous donnez la meteo. Ressayez plus tart"
+                        }
+                        else
+                        {
+                            sortieText = "Desoler , "+user+" mais je subit un probleme qui m'embeche de te donner la meteo. Ressaye plus tart"
+                        }
                         gestionnaite.setOldSortie(sortieText)
                         gestionnaite.setOldRequette(requetteFormater)
                         gestionnaite.addDiscution()
@@ -83,7 +90,14 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                     }
 
                         override fun onError(error: String) {
-                            sortieText =(error)
+                            if (etatvous)
+                            {
+                                sortieText = "Desoler , "+genre+" "+user+" mais un probleme technique m'empeche de vous donnez les actualités. Ressayez plus tart"
+                            }
+                            else
+                            {
+                                sortieText = "Desoler , "+user+" mais je subit un probleme qui m'embeche de te donner les actualités. Ressaye plus tart"
+                            }
                             gestionnaite.setOldSortie(sortieText)
                             gestionnaite.setOldRequette(requetteFormater)
                             gestionnaite.addDiscution()
@@ -131,7 +145,14 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                                             }
                                         }
                                     override fun onError(error: String) {
-                                        sortieText =(error)
+                                        if (etatvous)
+                                        {
+                                            sortieText = "Desoler , "+genre+" "+user+" mais un probleme technique m'empeche de vous donnez la temperature. Ressayez plus tart"
+                                        }
+                                        else
+                                        {
+                                            sortieText = "Desoler , "+user+" mais je subit un probleme qui m'embeche de te donner la temperature. Ressaye plus tart"
+                                        }
                                         gestionnaite.setOldSortie(sortieText)
                                         gestionnaite.setOldRequette(requetteFormater)
                                         gestionnaite.addDiscution()
