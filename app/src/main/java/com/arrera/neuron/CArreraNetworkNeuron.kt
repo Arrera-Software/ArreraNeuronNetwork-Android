@@ -114,12 +114,47 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                                     callback("On se trouve au "+adresse)
                                 })
                         }
-                        else {
-                            sortieText = (nFormulation.nocomprehension());
-                            gestionnaite.setOldSortie(sortieText)
-                            gestionnaite.setOldRequette(requetteFormater)
-                            gestionnaite.addDiscution()
-                            callback(sortieText)
+                        else
+                        {
+                            if (requette.contains("temperature"))
+                            {
+                                fMeteo.data(latitude,longitude,object : fMeteoSortie {
+                                    override fun onDataReceived(temperature: String, ville :String, description:String)
+                                    {
+                                            if (gestionnaite.etatVous==true)
+                                            {
+                                                sortieText = "La temperature actuel a votre localisation est de $temperature °C."
+                                                gestionnaite.setOldSortie(sortieText)
+                                                gestionnaite.setOldRequette(requetteFormater)
+                                                gestionnaite.addDiscution()
+                                                callback(sortieText)
+                                            }
+                                            else
+                                            {
+                                                sortieText =("La temperature $temperature °C.")
+                                                gestionnaite.setOldSortie(sortieText)
+                                                gestionnaite.setOldRequette(requetteFormater)
+                                                gestionnaite.addDiscution()
+                                                callback(sortieText)
+                                            }
+                                        }
+                                    override fun onError(error: String) {
+                                        sortieText =(error)
+                                        gestionnaite.setOldSortie(sortieText)
+                                        gestionnaite.setOldRequette(requetteFormater)
+                                        gestionnaite.addDiscution()
+                                        callback(sortieText)
+                                    }
+                                })
+                            }
+                            else
+                            {
+                                sortieText = (nFormulation.nocomprehension());
+                                gestionnaite.setOldSortie(sortieText)
+                                gestionnaite.setOldRequette(requetteFormater)
+                                gestionnaite.addDiscution()
+                                callback(sortieText)
+                            }
                         }
 
                     }
