@@ -2,6 +2,9 @@ package com.arrera.neuron
 
 import android.content.Context
 import android.location.Geocoder
+import android.location.Geocoder.GeocodeListener
+import android.os.Build
+import androidx.annotation.RequiresApi
 import kotlin.random.Random
 
 class CArreraNetworkNeuron(private val nameAssistant:String,
@@ -21,8 +24,9 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
     private val nTime : CNeuronTime = CNeuronTime(gestionnaite,aDate,gText)
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();
     private val fActu : CfArreraActu = CfArreraActu()
-
-    fun neuron(requette :String ,latitude:String,longitude:String ,callback: (String) -> Unit)
+    private val geo : Geocoder = Geocoder(cont)
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun neuron(requette :String, latitude:String, longitude:String, callback: (String) -> Unit)
     {
         var sortieNb = 0
         var sortieText = ""
@@ -101,11 +105,23 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                     sortieNb = nTime.outNeuronNb()
                     if (sortieNb==0)
                     {
-                        sortieText =(nFormulation.nocomprehension());
-                        gestionnaite.setOldSortie(sortieText)
-                        gestionnaite.setOldRequette(requetteFormater)
-                        gestionnaite.addDiscution()
-                        callback(sortieText)
+                        if (requette.contains("ou je suis")||requette.contains("ou je me trouve"))
+                        {
+                            val adresse : String
+                            geo.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1,
+                                GeocodeListener{ addresses ->
+                                    val adresse = addresses[0]
+                                    callback("Vous etes "+adresse)
+                                })
+                        }
+                        else {
+                            sortieText = (nFormulation.nocomprehension());
+                            gestionnaite.setOldSortie(sortieText)
+                            gestionnaite.setOldRequette(requetteFormater)
+                            gestionnaite.addDiscution()
+                            callback(sortieText)
+                        }
+
                     }
                     else
                     {
@@ -121,18 +137,11 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
         }
         else
         {
-            if (requette.contains("ou je suis")||requette.contains("ou je me trouve"))
-            {
-
-            }
-            else
-            {
-                sortieText = (nChat.outNeuronText())
-                gestionnaite.setOldSortie(sortieText)
-                gestionnaite.setOldRequette(requetteFormater)
-                gestionnaite.addDiscution()
-                callback(sortieText)
-            }
+            sortieText = (nChat.outNeuronText())
+            gestionnaite.setOldSortie(sortieText)
+            gestionnaite.setOldRequette(requetteFormater)
+            gestionnaite.addDiscution()
+            callback(sortieText)
         }
     }
 
