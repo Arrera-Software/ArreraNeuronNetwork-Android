@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() , LocationListener  {
             true,
             "Monsieur",
             "dev",
-            "Baptiste Pauchet");
+            "Baptiste Pauchet",
+            this);
         // demarage
         msgOUT.setText("Opale : "+arreraNeuron.bonjour());
 
