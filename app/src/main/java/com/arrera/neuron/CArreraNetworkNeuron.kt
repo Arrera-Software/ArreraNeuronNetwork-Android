@@ -110,8 +110,8 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                             val adresse : String
                             geo.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1,
                                 GeocodeListener{ addresses ->
-                                    val adresse = addresses[0]
-                                    callback("Vous etes "+adresse)
+                                    val adresse = addresses[0].getAddressLine(0)
+                                    callback("On se trouve au "+adresse)
                                 })
                         }
                         else {
