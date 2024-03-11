@@ -30,6 +30,9 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
     {
         var sortieNb = 0
         var sortieText = ""
+        var genre = gestionnaite.genre
+        var user = gestionnaite.user
+        var etatvous = gestionnaite.etatVous
         var requetteFormater = gText.formatageText(requette)
         nChat.neuron(requetteFormater);
         sortieNb = nChat.outNeuronNb();
@@ -39,9 +42,9 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
             {
                 fMeteo.data(latitude,longitude,object : fMeteoSortie {
                     override fun onDataReceived(temperature: String, ville :String, description:String) {
-                        val random = Random.nextInt(1,2)
-                        if (random==1) {
-                            sortieText = "La meteo a$ville" + "est$description" + "avec une temperature de $temperature °C."
+                        if (etatvous)
+                        {
+                            sortieText = "La meteo a votre localisation est$description" + "avec une temperature de $temperature °C."
                             gestionnaite.setOldSortie(sortieText)
                             gestionnaite.setOldRequette(requetteFormater)
                             gestionnaite.addDiscution()
@@ -49,22 +52,11 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                         }
                         else
                         {
-                            if (gestionnaite.etatVous==true)
-                            {
-                                sortieText = "La meteo a votre localisation est$description" + "avec une temperature de $temperature °C."
-                                gestionnaite.setOldSortie(sortieText)
-                                gestionnaite.setOldRequette(requetteFormater)
-                                gestionnaite.addDiscution()
-                                callback(sortieText)
-                            }
-                            else
-                            {
-                                sortieText =("La meteo a ta localisation est$description" + "avec une temperature de $temperature °C.")
-                                gestionnaite.setOldSortie(sortieText)
-                                gestionnaite.setOldRequette(requetteFormater)
-                                gestionnaite.addDiscution()
-                                callback(sortieText)
-                            }
+                            sortieText =("La meteo a ta localisation est$description" + "avec une temperature de $temperature °C.")
+                            gestionnaite.setOldSortie(sortieText)
+                            gestionnaite.setOldRequette(requetteFormater)
+                            gestionnaite.addDiscution()
+                            callback(sortieText)
                         }
                     }
 
@@ -121,7 +113,7 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                                 fMeteo.data(latitude,longitude,object : fMeteoSortie {
                                     override fun onDataReceived(temperature: String, ville :String, description:String)
                                     {
-                                            if (gestionnaite.etatVous==true)
+                                            if (etatvous)
                                             {
                                                 sortieText = "La temperature actuel a votre localisation est de $temperature °C."
                                                 gestionnaite.setOldSortie(sortieText)
