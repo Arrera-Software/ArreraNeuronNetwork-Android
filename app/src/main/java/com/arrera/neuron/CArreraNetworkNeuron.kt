@@ -97,7 +97,7 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                     sortieNb = nTime.outNeuronNb()
                     if (sortieNb==0)
                     {
-                        if (requette.contains("ou je suis")||requette.contains("ou je me trouve"))
+                        if (requette.contains("ou je suis")||requette.contains("ou je me trouve")||requette.contains("on es ou"))
                         {
                             val adresse : String
                             geo.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1,

@@ -9,6 +9,7 @@ public class CArreraGestionText {
                 .replace("ç","c")
                 .replace("â","a")
                 .replace("ê","e")
+                .replace("û","u")
                 .toLowerCase();
         return sortie;
     }
