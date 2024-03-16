@@ -1,10 +1,13 @@
 package com.arrera.neuron
 
 import android.content.Context
+import android.content.Intent
 import android.location.Geocoder
 import android.location.Geocoder.GeocodeListener
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.startActivity
 import kotlin.random.Random
 
 class CArreraNetworkNeuron(private val nameAssistant:String,
@@ -111,7 +114,11 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                     sortieNb = nTime.outNeuronNb()
                     if (sortieNb==0)
                     {
+<<<<<<< Updated upstream
                         if (requette.contains("ou je suis")||requette.contains("ou je me trouve")||requette.contains("on es ou"))
+=======
+                        if (requetteFormater.contains("ou je suis")||requetteFormater.contains("ou je me trouve"))
+>>>>>>> Stashed changes
                         {
                             val adresse : String
                             geo.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1,
@@ -122,7 +129,7 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                         }
                         else
                         {
-                            if (requette.contains("temperature"))
+                            if (requetteFormater.contains("temperature"))
                             {
                                 fMeteo.data(latitude,longitude,object : fMeteoSortie {
                                     override fun onDataReceived(temperature: String, ville :String, description:String)
@@ -162,11 +169,11 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                             }
                             else
                             {
-                                sortieText = (nFormulation.nocomprehension());
-                                gestionnaite.setOldSortie(sortieText)
-                                gestionnaite.setOldRequette(requetteFormater)
-                                gestionnaite.addDiscution()
-                                callback(sortieText)
+                            sortieText = (nFormulation.nocomprehension());
+                            gestionnaite.setOldSortie(sortieText)
+                            gestionnaite.setOldRequette(requetteFormater)
+                            gestionnaite.addDiscution()
+                            callback(sortieText)
                             }
                         }
 
