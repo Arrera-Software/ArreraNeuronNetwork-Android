@@ -25,6 +25,7 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
     private val nFormulation : CNeuronFormulation = CNeuronFormulation(gestionnaite,aDate);
     private val nChat : CNeuronChat = CNeuronChat(gestionnaite,nFormulation,gText);
     private val nTime : CNeuronTime = CNeuronTime(gestionnaite,aDate,gText)
+    private val nInternet : CNeuronInternet = CNeuronInternet(cont,gText,gestionnaite)
     private val fMeteo: CfArreraMeteo = CfArreraMeteo();
     private val fActu : CfArreraActu = CfArreraActu()
     private val geo : Geocoder = Geocoder(cont)
@@ -166,11 +167,24 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                             }
                             else
                             {
-                            sortieText = (nFormulation.nocomprehension());
-                            gestionnaite.setOldSortie(sortieText)
-                            gestionnaite.setOldRequette(requetteFormater)
-                            gestionnaite.addDiscution()
-                            callback(sortieText)
+                                nInternet.neuron(requetteFormater)
+                                sortieNb = nInternet.outNeuronNb()
+                                if (sortieNb==0)
+                                {
+                                    sortieText = (nFormulation.nocomprehension());
+                                    gestionnaite.setOldSortie(sortieText)
+                                    gestionnaite.setOldRequette(requetteFormater)
+                                    gestionnaite.addDiscution()
+                                    callback(sortieText)
+                                }
+                                else
+                                {
+                                    sortieText = nInternet.outNeuronText()
+                                    gestionnaite.setOldSortie(sortieText)
+                                    gestionnaite.setOldRequette(requetteFormater)
+                                    gestionnaite.addDiscution()
+                                    callback(sortieText)
+                                }
                             }
                         }
 
