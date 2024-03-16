@@ -114,11 +114,8 @@ class CArreraNetworkNeuron(private val nameAssistant:String,
                     sortieNb = nTime.outNeuronNb()
                     if (sortieNb==0)
                     {
-<<<<<<< Updated upstream
-                        if (requette.contains("ou je suis")||requette.contains("ou je me trouve")||requette.contains("on es ou"))
-=======
-                        if (requetteFormater.contains("ou je suis")||requetteFormater.contains("ou je me trouve"))
->>>>>>> Stashed changes
+                        if (requetteFormater.contains("ou je suis")||requetteFormater.contains("ou je me trouve")||requetteFormater.contains("on es ou"))
+
                         {
                             val adresse : String
                             geo.getFromLocation(latitude.toDouble(), longitude.toDouble(), 1,
